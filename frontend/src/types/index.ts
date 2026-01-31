@@ -26,6 +26,8 @@ export interface Advisor {
     title: string;
     faction: string;
     portrait: string; // URL
+    position: {x: number, y: number};
+    sprite: string; // URL
 }
 
 export interface Evidence {
@@ -36,6 +38,7 @@ export interface Evidence {
     content: string;
     insight: string;
     stat_impact: Partial<Stats>;
+
 }
 
 export interface EraData {

@@ -1,5 +1,6 @@
 import { useGameStore } from './store/gameStore';
 import { StatsPanel } from './components/game/StatsPanel';
+import { SceneScreen } from './screens/SceneScreen';
 
 // Placeholder Screens (You will flesh these out next)
 const TitleScreen = () => {
@@ -35,11 +36,6 @@ const EraIntro = () => {
   );
 };
 
-const Scene = () => (
-  <div className="h-screen bg-gray-800 flex items-center justify-center text-white">
-    <h1 className="text-2xl">Main Game Scene (Coming Soon)</h1>
-  </div>
-);
 
 function App() {
   const currentScreen = useGameStore((state) => state.currentScreen);
@@ -52,7 +48,7 @@ function App() {
       {/* Screen Router */}
       {currentScreen === 'TITLE' && <TitleScreen />}
       {currentScreen === 'ERA_INTRO' && <EraIntro />}
-      {currentScreen === 'SCENE' && <Scene />}
+      {currentScreen === 'SCENE' && <SceneScreen />}
       {/* Add other screens here as you build them */}
     </div>
   );
