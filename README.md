@@ -20,6 +20,11 @@ python -m venv .venv
 ```
 2. Install dependencies
 ```bash
+# On MacOs/Linux
+source .venv/bin/activate
+# On Windows
+.venv\Scripts\activate.bat
+
 pip install -r requirements.txt
 ```
 3. Run the server (Might fail for now)
