@@ -13,3 +13,5 @@ class GameSession(BaseModel):
     stats: Stats = Stats()
     evidence_viewed: List[str] = []
     choices: Dict[int, str] = {}
+    #Stores history like {"caelius": [{"role": "user", "content": "..."}, ...]}
+    chats: Dict[str, List[Dict[str, str]]] = {}

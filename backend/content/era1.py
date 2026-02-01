@@ -3,13 +3,18 @@ ERA_1_DATA = {
     "id": 1,
     "title": "The Rubicon",
     "year": "49 BC",
-    "intro_text": "Caesar stands at the Rubicon with his XIII Legion. To cross is treason. To retreat is death.",
+    "intro_text": """Caesar stands at the Rubicon with his XIII Legion.
+To cross is treason. To retreat is death.
+The Council has gathered. They await your wisdom.""",
+    
+    "scene_background": "/assets/scenes/era1_forum.png",
+    
     "evidence": [
         {
             "id": "era1_caesar_letter",
             "title": "Caesar's Letter",
             "position": {"x": 65, "y": 25},  # % position in scene
-            "sprite": "📜",
+            "sprite": "/assets/evidence/scroll.png",
             "content": """To the Conscript Fathers of the Senate:
 
 I offer this compromise: I will disband my legions if Pompey disbands his.
@@ -24,7 +29,7 @@ If this is refused, let history record who chose war.
             "id": "era1_treasury_records",
             "title": "Treasury Records",
             "position": {"x": 35, "y": 55},
-            "sprite": "📋",
+            "sprite": "/assets/evidence/tablet.png",
             "content": """SENATE TREASURY - DISBURSEMENTS 50 BC
 Border Security (Hispania): 50,000 denarii
 Recipient: [CLASSIFIED - Senate Eyes Only]""",
@@ -35,7 +40,7 @@ Recipient: [CLASSIFIED - Senate Eyes Only]""",
             "id": "era1_merchant_complaint",
             "title": "Merchant Complaint",
             "position": {"x": 55, "y": 70},
-            "sprite":  "💰",
+            "sprite": "/assets/evidence/scroll.png",
             "content": """To the Aediles:
 The Guild protests trade disruptions from 'military exercises.'
 Both sides position for war while claiming peace.""",
@@ -46,7 +51,7 @@ Both sides position for war while claiming peace.""",
             "id": "era1_augury_report",
             "title": "Augury Report",
             "position": {"x": 80, "y": 40},
-            "sprite": "🏺",
+            "sprite": "/assets/evidence/vase.png",
             "content": """COLLEGIUM OF AUGURS - OFFICIAL REPORT
 The sacred chickens have been consulted.
 FINDING: The omens are UNFAVORABLE for crossing boundaries.
@@ -58,7 +63,7 @@ Signed: Metellus Pius, Pontifex""",
             "id": "era1_metellus_private",
             "title": "Private Letter",
             "position": {"x": 20, "y": 75},
-            "sprite": "📨",
+            "sprite": "/assets/evidence/letter.png",
             "content": """Brother,
 The augury is done. The chickens ate poorly but I recorded that they did not eat at all.
 Caelius assures me our temple lands will be protected.
@@ -68,55 +73,57 @@ Burn this letter. - M""",
             "stat_impact": {"republic": -10, "stability": -5}
         }
     ],
+    
     "advisors": [
         {
             "id": "caelius",
             "name": "Senator Caelius",
-            "title": "Senior Senator",
-            "faction": "Senate",
-            "portrait": "https://placehold.co/200x200/8B0000/fff?text=Caelius",
             "position": {"x": 20, "y": 40},
-            "sprite": "👤"
+            "sprite": "/assets/advisors/caelius_sprite.png"
         },
         {
             "id": "labienus",
             "name": "General Labienus",
-            "faction": "Military",
-            "portrait": "https://placehold.co/200x200/333/fff?text=Labienus",
             "position": {"x": 15, "y": 65},
-            "sprite": "⚔️"
+            "sprite": "/assets/advisors/labienus_sprite.png"
         },
         {
             "id": "balbus",
             "name": "Merchant Balbus",
-            "title": "Guild Head",
-            "faction": "Merchant",
-            "portrait": "https://placehold.co/200x200/C5A009/000?text=Balbus",
             "position": {"x": 70, "y": 60},
-            "sprite": "💰"
+            "sprite": "/assets/advisors/balbus_sprite.png"
         },
         {
             "id": "metellus",
             "name": "Priest Metellus",
-            "title": "Pontifex",
-            "faction": "Religion",
             "position": {"x": 85, "y": 35},
-            "sprite": "⛪"
+            "sprite": "/assets/advisors/metellus_sprite.png"
         }
     ],
-    "choices" : [
+    
+    "choices": [
         {
             "id": "1",
-            "title": "Option 1",
-            "outcome_text": "Wowwwww",
-            "stat_impact": {"stability": 5, "republic": 5}
+            "title": "RESIST CAESAR",
+            "description": "Stand firm against the tyrant. Call upon Pompey. Defend the Republic at any cost.",
+            "supporters": ["caelius", "metellus"],
+            "image": "/assets/choices/era1_resist.png",
+            "stat_impact": {"military": 20, "economy": -15, "stability": -20, "republic": 10},
+            "outcome_text": "The Senate refuses negotiation. Caesar crosses the Rubicon. Civil war erupts.",
+            "outcome_scene": "era1_war"
         },
         {
             "id": "2",
-            "title": "Option 2",
-            "outcome_text": "Not so Wowwwwww",
-            "stat_impact": {"military": 5, "economy": -5}
+            "title": "NEGOTIATE",
+            "description": "Accept the compromise. Grant veterans their land. Preserve peace.",
+            "supporters": ["labienus", "balbus"],
+            "image": "/assets/choices/era1_negotiate.png",
+            "stat_impact": {"military": -10, "economy": 15, "stability": 20, "republic": -10},
+            "outcome_text": "Caesar enters Rome as First Citizen. The Senate yields. Peace holds... for now.",
+            "outcome_scene": "era1_peace"
         }
-    ]
+    ],
+    
+    "historical_choice": "1",
+    "historical_outcome": "Rome chose resistance. Caesar crossed the Rubicon. Civil war consumed the Republic."
 }
-# TO DO
