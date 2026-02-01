@@ -79,25 +79,37 @@ Burn this letter. - M""",
             "id": "caelius",
             "name": "Senator Caelius",
             "position": {"x": 20, "y": 40},
-            "sprite": "/assets/advisors/caelius_sprite.png"
+            "sprite": "/assets/advisors/caelius_sprite.png",
+            "personality": "Silver tongued and charming, Reckless and oportunistic, Witty, Desperate for relevance, Energetic and impatient, Cynical about virtue",
+            "hidden_agenda": "Provoke civil war to create chaos, then position himself as a 'moderate' peacemaker",
+            "tell": "I defend the Republic"
         },
         {
             "id": "labienus",
             "name": "General Labienus",
             "position": {"x": 15, "y": 65},
-            "sprite": "/assets/advisors/labienus_sprite.png"
+            "sprite": "/assets/advisors/labienus_sprite.png",
+            "personality": "Rigid and moralistic, Bitter and resentful, Coldly professional, Prideful about competence, Self-righteous, Humorless",
+            "hidden_agenda": "Destroy Caesar to prove he was the real strategic genius behind the Gallic victories",
+            "tell": "I defend Republican principles"
         },
         {
             "id": "balbus",
             "name": "Merchant Balbus",
             "position": {"x": 70, "y": 60},
-            "sprite": "/assets/advisors/balbus_sprite.png"
+            "sprite": "/assets/advisors/balbus_sprite.png",
+            "personality": "Pragmatic and calculating, Quietly ambitious, Loyal to patrons, Patient and methodical, Cosmopolitan",
+            "hidden_agenda": "Secure Roman citizenship and equestrian status by financing Caesar's rise",
+            "tell": "Stability helps all Romans"
         },
         {
             "id": "metellus",
             "name": "Priest Metellus",
             "position": {"x": 85, "y": 35},
-            "sprite": "/assets/advisors/metellus_sprite.png"
+            "sprite": "/assets/advisors/metellus_sprite.png",
+            "personality": "Sanctimonious and pious, Protective of privilege, Superstitious theater, Condescending, Fearful of change, Ceremonially minded",
+            "hidden_agenda": "Secure Roman citizenship and equestrian status by financing Caesar's rise",
+            "tell": "The Gods speak against Caesar"
         }
     ],
     
@@ -106,7 +118,7 @@ Burn this letter. - M""",
             "id": "A",
             "title": "RESIST CAESAR",
             "description": "Stand firm against the tyrant. Call upon Pompey. Defend the Republic at any cost.",
-            "supporters": ["caelius", "metellus"],
+            "supporters": ["caelius", "metellus", "labienus"],
             "image": "/assets/choices/era1_resist.png",
             "stat_impact": {"military": 20, "economy": -15, "stability": -20, "republic": 10},
             "outcome_text": "The Senate refuses negotiation. Caesar crosses the Rubicon. Civil war erupts.",
@@ -116,7 +128,7 @@ Burn this letter. - M""",
             "id": "B",
             "title": "NEGOTIATE",
             "description": "Accept the compromise. Grant veterans their land. Preserve peace.",
-            "supporters": ["labienus", "balbus"],
+            "supporters": ["balbus"],
             "image": "/assets/choices/era1_negotiate.png",
             "stat_impact": {"military": -10, "economy": 15, "stability": 20, "republic": -10},
             "outcome_text": "Caesar enters Rome as First Citizen. The Senate yields. Peace holds... for now.",
@@ -204,25 +216,37 @@ Do not go to the Senate today. Even the priests say the omens are bad without a 
             "id": "brutus",
             "name": "Senator Brutus",
             "position": {"x": 30, "y": 45},
-            "sprite": "/assets/advisors/brutus_sprite.png"
+            "sprite": "/assets/advisors/brutus_sprite.png",
+            "personality": "Intellectual and philosophical, Internally conflicted, Idealistic and naive, Burdened by legacy, Earnest and humorless, Needs moral justification",
+            "hidden_agenda": "Restore his family's legendary reputation as tyrannicide and become Rome's moral leader",
+            "tell": "I act without self-interest"
         },
         {
             "id": "antony",
             "name": "Mark Antony",
             "position": {"x": 70, "y": 40},
-            "sprite": "/assets/advisors/antony_sprite.png"
+            "sprite": "/assets/advisors/antony_sprite.png",
+            "personality": "Passionate and emotional, Intensely loyal, Charismatic and theatrical, Hedonistic, Militarily minded, Impulsive",
+            "hidden_agenda": "Become Caesar's sole heir and eliminate rivals (especially young Octavian)",
+            "tell": "I serve Caesar loyally"
         },
         {
             "id": "cassius",
             "name": "Senator Cassius",
             "position": {"x": 15, "y": 55},
-            "sprite": "/assets/advisors/cassius_sprite.png"
+            "sprite": "/assets/advisors/cassius_sprite.png",
+            "personality": "Bitter and envious, Strategically brilliant, Paranoid, Lean and hungry, Atheistic/skeptical, Manipulative",
+            "hidden_agenda": "Eliminate Caesar who denied him honors, then purge all populares to restore oligarchy",
+            "tell": "This is about the Republic"
         },
         {
             "id": "calpurnia",
             "name": "Calpurnia",
             "position": {"x": 50, "y": 65},
-            "sprite": "/assets/advisors/calpurnia_sprite.png"
+            "sprite": "/assets/advisors/calpurnia_sprite.png",
+            "personality": "Anxious and fearful, Protective, Superstitious, Politically astute, Quiet strength, Traditional Roman matron",
+            "hidden_agenda": "Prevent Caesar's death to maintain her position and protect her family's wealth",
+            "tell": "The Gods sent me omens"
         }
     ],
     
@@ -324,25 +348,37 @@ To hang the Civic Crown of oak leaves above his door.""",
             "id": "agrippa",
             "name": "General Agrippa",
             "position": {"x": 20, "y": 40},
-            "sprite": "/assets/advisors/agrippa_sprite.png"
+            "sprite": "/assets/advisors/agrippa_sprite.png",
+            "personality": "Utterly loyal, Competent and efficient, Self-effacing, Practical builder, Military professional, Humble origins",
+            "hidden_agenda": "Ensure his bloodline inherits the empire by marrying his daughter to Augustus's heir",
+            "tell": "Rome needs order"
         },
         {
             "id": "maecenas",
             "name": "Maecenas",
             "position": {"x": 75, "y": 45},
-            "sprite": "/assets/advisors/maecenas_sprite.png"
+            "sprite": "/assets/advisors/maecenas_sprite.png",
+            "personality": "Cultured aesthete, Diplomatic and subtle, Politically brilliant, Epicurean, Self-consciously unofficial, Manipulative through culture",
+            "hidden_agenda": "Become the permanent 'power behind the throne' - the gray eminence who really rules",
+            "tell": "I want no official power"
         },
         {
             "id": "livia",
             "name": "Livia Drusilla",
             "position": {"x": 45, "y": 30},
-            "sprite": "/assets/advisors/livia_sprite.png"
+            "sprite": "/assets/advisors/livia_sprite.png",
+            "personality": "Coldly intelligent, Patient and calculating, Steely composure, Ruthlessly maternal, Socially conservative facade, Quietly dominant",
+            "hidden_agenda": "Ensure her sons (from previous marriage) inherit the empire, not Augustus's blood relatives",
+            "tell": "The best man should rule"
         },
         {
             "id": "varro",
             "name": "Senator Varro",
             "position": {"x": 85, "y": 65},
-            "sprite": "/assets/advisors/varro_sprite.png"
+            "sprite": "/assets/advisors/varro_sprite.png",
+            "personality": "Nostalgic for Republic, Proud aristocrat, Stubborn and inflexiblem Courageous but foolish, Eloquent in decline, Tragically aware",
+            "hidden_agenda": "Restore senatorial corruption and provincial extortion that enriched the old aristocracy",
+            "tell": "The Republic was just"
         }
     ],
     
@@ -389,7 +425,7 @@ The borders burn. The money is worthless. The Empire is fracturing.""",
             "id": "era4_debased_coin",
             "title": "Handful of Antoniniani",
             "position": {"x": 30, "y": 65},
-            "sprite": "/assets/evidence/vase.png",
+            "sprite": "/assets/evidence/coin.png",
             "content": """New silver coins issued by the mint.
 Wait... the silver rubs off. Underneath, it is copper.
 Silver content: Less than 40%.""",
@@ -432,7 +468,7 @@ The Senate recognizes Gordian as Emperor.""",
             "id": "era4_soldier_demand",
             "title": "Soldier's Graffiti",
             "position": {"x": 90, "y": 55},
-            "sprite": "/assets/evidence/tablet.png",
+            "sprite": "/assets/evidence/wall.png",
             "content": """Scratched into the wall:
 'Enrich the soldiers, scorn all other men.'
 - Septimius Severus""",
@@ -446,25 +482,37 @@ The Senate recognizes Gordian as Emperor.""",
             "id": "maximinus",
             "name": "General Thrax",
             "position": {"x": 25, "y": 35},
-            "sprite": "/assets/advisors/thrax_sprite.png"
+            "sprite": "/assets/advisors/thrax_sprite.png",
+            "personality": "Brutal and direct, Low-born pride, Physically imposing, Anti-intellectual, Paranoid of betrayal, Violent solutions",
+            "hidden_agenda": "Establish 'soldier emperors' from the ranks, breaking aristocratic monopoly on power",
+            "tell": "The strong should rule"
         },
         {
             "id": "gordian",
             "name": "Senator Gordian",
             "position": {"x": 70, "y": 45},
-            "sprite": "/assets/advisors/gordian_sprite.png"
+            "sprite": "/assets/advisors/gordian_sprite.png",
+            "personality": "Cultured aristocrat, Elderly and weary, Wealthy landowner, Regional pride, Reluctant Leader, Nostalgic for stability",
+            "hidden_agenda": "Make African provinces (where his family has estates) autonomous to avoid imperial taxation",
+            "tell": "Freedom for all provinces"
         },
         {
             "id": "timesitheus",
             "name": "Prefect Timesitheus",
             "position": {"x": 50, "y": 60},
-            "sprite": "/assets/advisors/timesitheus_sprite.png"
+            "sprite": "/assets/advisors/timesitheus_sprite.png",
+            "personality": "Hyper-competent administrator, Workaholic, Control-oriented, Loyal to office but not person, Impatient with inefficiency, Believes in meritocracy",
+            "hidden_agenda": "Become the real power as 'imperial regent' - let emperors be figureheads while he administers",
+            "tell": "Efficiency saves Rome"
         },
         {
             "id": "merchant_guild",
             "name": "Guildmaster",
             "position": {"x": 85, "y": 70},
-            "sprite": "/assets/advisors/merchant_sprite.png"
+            "sprite": "/assets/advisors/merchant_sprite.png",
+            "personality": "Pragmatic businessman, Cosmopolitan trader, Risk-averse, Guild solidarity, Suspicious of emperors, Patient accumulator",
+            "hidden_agenda": "Break imperial trade monopolies to allow merchant guilds to control commerce",
+            "tell": "Markets work best when free"
         }
     ],
     
@@ -566,25 +614,37 @@ It matters not who wears the crown, so long as the Church is respected.""",
             "id": "orestes",
             "name": "Regent Orestes",
             "position": {"x": 30, "y": 40},
-            "sprite": "/assets/advisors/orestes_sprite.png"
+            "sprite": "/assets/advisors/orestes_sprite.png",
+            "personality": "Former Attila aide, Ambitious climber, Protective of son, Paranoid of replacement, Pragmatic survivor, Embittered",
+            "hidden_agenda": "Maintain his power as regent by preventing any strong leader (including Odoacer) from taking real control",
+            "tell": "I protect the Emperor"
         },
         {
             "id": "odoacer_envoy",
             "name": "Gothic Envoy",
             "position": {"x": 70, "y": 50},
-            "sprite": "/assets/advisors/envoy_sprite.png"
+            "sprite": "/assets/advisors/envoy_sprite.png",
+            "personality": "Weary warrior, Reasonable negotiator, Culturally hybrid, Frustrated by promises, Speaks for soldiers, Respectful but firm",
+            "hidden_agenda": "Secure Odoacer's coronation as King of Italy, eliminating the imperial office entirely",
+            "tell": "We'll preserve Roman traditions"
         },
         {
             "id": "bishop",
             "name": "Bishop of Ravenna",
             "position": {"x": 15, "y": 65},
-            "sprite": "/assets/advisors/bishop_sprite.png"
+            "sprite": "/assets/advisors/bishop_sprite.png",
+            "personality": "Spiritual but political, Long view thinker, Pragmatic about Barbarians, Increasingly powerful, Apocalyptic undertones, Calm in crisis",
+            "hidden_agenda": " Transfer loyalty from dying Empire to eternal Church; make Church the permanent institution",
+            "tell": "Faith transcends empires"
         },
         {
             "id": "sidonius",
             "name": "Sidonius (Noble)",
             "position": {"x": 85, "y": 60},
-            "sprite": "/assets/advisors/sidonius_sprite.png"
+            "sprite": "/assets/advisors/sidonius_sprite.png",
+            "personality": ";ast classical Roman, Cultured aristocrat, Mournful elegance, Landowner's concerns, Conflicted, Dignified in defeat",
+            "hidden_agenda": "Preserve Roman aristocratic estates and prevent land redistribution to barbarian soldiers",
+            "tell": "Roman civilization must endure"
         }
     ],
     
