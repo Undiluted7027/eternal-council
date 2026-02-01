@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import { type Stats, type GameScreen, type EraData } from '../types';
+import { api } from '../lib/api';
 
 interface GameState {
     // Session
@@ -7,21 +8,31 @@ interface GameState {
     currentScreen: GameScreen;
     currentEra: number;
     stats: Stats;
-    evidenceViewed: string[]; // List of evidence IDs
-    advisorsConsulted: string[]; // List of advisors IDs
 
     // Data
     eraData: EraData | null;
     isLoading: boolean;
+    error: string | null;
+
+    // Interaction State
+    evidenceViewed: string[]; // List of evidence IDs
+    advisorsConsulted: string[]; // List of advisors IDs
+    activePopup: 'evidence' | 'advisor' | null;
+    activeItemId: string | null;
 
     // Actions
     setScreen: (screen: GameScreen) => void;
-    updateStats: (newStats: Stats) => void;
     startGame: () => Promise<void>;
     loadEra: (eraId: number) => Promise<void>;
     viewEvidence: (id: string) => void;
-    consultAdvisor: (id: string) => void;
+    consultAdvisor: (id: string) => void; // Still local/simulated for now
+    makeDecision: (choiceId: string) => Promise<void>;
+
+    // updateStats: (newStats: Stats) => void;
+    // UI Actions
     checkReadyForDecision: () => boolean;
+    openPopup: (type: 'evidence' | 'advisor', id: string) => void;
+    closePopup: () => void;
 }
 
 // Mock initial stats for UI dev before backend is ready
@@ -39,66 +50,118 @@ export const useGameStore = create<GameState>((set, get) => ({
     stats: INITIAL_STATS,
     eraData: null,
     isLoading: false,
+    error: null,
     evidenceViewed: [],
     advisorsConsulted: [],
+    activePopup: null,
+    activeItemId: null,
 
     setScreen: (screen) => set({ currentScreen: screen }),
+    openPopup: (type, id) => {
+        set({ activePopup: type, activeItemId: id });
+    },
+    closePopup: () => {
+        set({ activePopup: null, activeItemId: null });
+    },
 
-    updateStats: (newStats) => set({ stats: newStats }),
+    // updateStats: (newStats) => set({ stats: newStats }),
 
     startGame: async () => {
-        set({ isLoading: true });
-        // TODO: Connect to Person B's API
-        // const res = await fetch('http://localhost:8000/game/start', { method: 'POST' });
-        // const data = await res.json();
-
-        // Mocking for now:
-        setTimeout(() => {
+        set({ isLoading: true, error: null });
+        try {
+            const data = await api.start();
             set({
-                sessionId: 'mock-session',
-                stats: INITIAL_STATS,
-                currentEra: 1,
+                sessionId: data.session_id,
+                stats: data.stats,
+                currentEra: data.current_era,
                 currentScreen: 'ERA_INTRO',
-                isLoading: false
-            });
-        }, 500);
-    },
-
-    loadEra: async (_eraId) => {
-        set({ isLoading: true });
-        // Simulate API delay
-        setTimeout(async () => {
-            // Import mock data here to avoid circular dependency issues at top level if needed
-            const { MOCK_ERA_1 } = await import('../data/mockData');
-            set({
-                eraData: MOCK_ERA_1,
+                // Reset era specific state
                 evidenceViewed: [],
                 advisorsConsulted: [],
-                isLoading: false
+                eraData: null
             });
-        }, 300);
+        } catch (err) {
+            console.error(err);
+            set({ error: "Failed to connect to Rome." });
+        } finally {
+            set({ isLoading: false });
+        }
     },
 
-    viewEvidence: (id) => {
-        const { evidenceViewed, stats, eraData } = get();
+    loadEra: async (eraId) => {
+        set({ isLoading: true, error: null });
+        try {
+            const data = await api.getEra(eraId);
+            set({
+                eraData: data,
+                currentEra: eraId,
+                // Reset interaction state for new era
+                evidenceViewed: [],
+                advisorsConsulted: [],
+                activePopup: null
+            });
+        } catch (err) {
+            set({ error: "Failed to load era data." });
+        } finally {
+            set({ isLoading: false });
+        }
+    },
+
+    viewEvidence: async(id) => {
+        const { sessionId, evidenceViewed, openPopup, stats } = get();
+
+        // Open the UI
+        openPopup('evidence', id);
+
+        // If already viewed, don't hit API again
         if (evidenceViewed.includes(id)) return;
 
-        console.log(stats);
+        if (!sessionId) return;
 
-        // Apply immediate stat impact from Mock Data
-        const evidenceItem = eraData?.evidence.find(e => e.id === id);
-        if (evidenceItem && evidenceItem.stat_impact) {
-            // logic to update stats would go here
-            // For now just mark viewed
+        try {
+            // Call API to register view and get stat updates
+            // The API response structure wasn't fully detailed in the snippet 
+            // but usually returns the new game state.
+            const response = await api.viewEvidence(id, sessionId);
+
+            set({
+                evidenceViewed: [...evidenceViewed, id],
+                stats: response.new_stats || stats // Assuming API returns new_stats
+            });
+        } catch (err) {
+            console.error("Failed to record evidence view", err);
         }
-
-        set({ evidenceViewed: [...evidenceViewed, id] });
     },
 
     consultAdvisor: (id) => {
-        const { advisorsConsulted } = get();
+        const { advisorsConsulted, openPopup } = get();
         if (!advisorsConsulted.includes(id)) {
             set({ advisorsConsulted: [...advisorsConsulted, id] });
+            openPopup('advisor', id);
+        }
+    },
+
+    makeDecision: async (choiceId) => {
+        const { sessionId } = get();
+        if (!sessionId) return;
+
+        set({ isLoading: true });
+        try {
+            const result = await api.makeDecision(choiceId, sessionId);
+
+            // Update stats based on result
+            set({
+                stats: result.new_stats,
+                currentScreen: 'DIVERGENCE',
+                // We might want to store the result/outcome text here to display it
+            });
+
+            // Return result for the component to use (e.g. for outcome text)
+            return result;
+        } catch (err) {
+            set({ error: "Decision failed." });
+        } finally {
+            set({ isLoading: false });
         }
     },
 

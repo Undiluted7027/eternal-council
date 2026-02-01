@@ -1,6 +1,8 @@
 import { useGameStore } from './store/gameStore';
 import { StatsPanel } from './components/game/StatsPanel';
 import { SceneScreen } from './screens/SceneScreen';
+import { DecisionScreen } from './screens/DecisionScreen';
+import { DivergenceScreen } from './screens/DivergenceScreen';
 
 // Placeholder Screens (You will flesh these out next)
 const TitleScreen = () => {
@@ -49,7 +51,8 @@ function App() {
       {currentScreen === 'TITLE' && <TitleScreen />}
       {currentScreen === 'ERA_INTRO' && <EraIntro />}
       {currentScreen === 'SCENE' && <SceneScreen />}
-      {/* Add other screens here as you build them */}
+      {currentScreen === 'DECISION' && <DecisionScreen />}
+      {currentScreen === 'DIVERGENCE' && <DivergenceScreen />}
     </div>
   );
 }

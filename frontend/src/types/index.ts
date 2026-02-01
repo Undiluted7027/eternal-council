@@ -41,12 +41,21 @@ export interface Evidence {
 
 }
 
+export interface Choice {
+  id: string;
+  title: string;
+  description: string;
+  supporters: string[]; // list of advisor IDs
+  stat_impact: Partial<Stats>;
+}
+
 export interface EraData {
-    id: number;
-    title: string;
-    year: string;
-    intro_text: string;
-    scene_background: string;
-    evidence: Evidence[];
-    advisors: Advisor[];
+  id: number;
+  title: string;
+  year: string;
+  intro_text: string;
+  scene_background: string;
+  evidence: Evidence[];
+  advisors: Advisor[];
+  choices: Choice[];
 }
