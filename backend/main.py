@@ -4,6 +4,7 @@ import uuid
 from typing import Dict
 from content.era1 import ERA_1_DATA
 from models.game import GameSession, Stats
+from ai.advisor_logic import get_advisor_response
 
 def update_stats(current_stats, impact_dict):
     """
@@ -59,10 +60,10 @@ async def get_game_state(session_id: str):
 
 @app.get("/era/{era_id}")
 async def get_era(era_id: int):
-    if era_id == 1:
-        return ERA_1_DATA
-    else:
-        raise HTTPException(status_code=404, detail="Era not implemented yet")
+    era_data = ALL_ERAS.get(era_id)
+    if not era_data:
+        raise HTTPException(status_code=404, detail=f"Era {era_id} not found")
+    return era_data
 
 @app.post("/evidence/{evidence_id}/view")
 async def view_evidence(evidence_id: str, session_id: str):
@@ -71,8 +72,10 @@ async def view_evidence(evidence_id: str, session_id: str):
     
     session = sessions[session_id]
     
+    era_data = ALL_ERAS.get(session.current_era)
+
     # 1. Find the evidence in our content
-    evidence_item = next((e for e in ERA_1_DATA["evidence"] if e["id"] == evidence_id), None)
+    evidence_item = next((e for e in era_data["evidence"] if e["id"] == evidence_id), None)
     
     if not evidence_item:
         raise HTTPException(status_code=404, detail="Evidence not found")
@@ -101,7 +104,7 @@ async def make_decision(session_id: str, choice_id: str):
         raise HTTPException(status_code=400, detail=f"Content for Era {session.current_era} not found")
 
     # 1. Find the choice in the current Era data
-    choice = next((c for c in ERA_1_DATA["choices"] if c["id"] == choice_id), None)
+    choice = next((c for c in era_data["choices"] if c["id"] == choice_id), None)
     
     if not choice:
         raise HTTPException(status_code=400, detail="Invalid choice")
@@ -117,6 +120,28 @@ async def make_decision(session_id: str, choice_id: str):
         "outcome_text": choice["outcome_text"],
         "new_stats": session.stats,
         "next_era": session.current_era
+    }
+
+@app.post("/advisor/{advisor_id}/chat")
+async def chat_with_advisor(advisor_id: str, session_id: str, message: str):
+    session = sessions.get(session_id)
+    if not session:
+        raise HTTPException(status_code=404, detail="Session not found")
+    
+    era_data = ALL_ERAS.get(session.current_era)
+    
+    # Get the AI response and the updated history
+    ai_reply, updated_history = await get_advisor_response(
+        advisor_id, message, session, era_data
+    )
+    
+    # Save the history back to the session
+    session.chats[advisor_id] = updated_history
+    sessions[session_id] = session
+    
+    return {
+        "advisor_id": advisor_id,
+        "response": ai_reply
     }
 
 if __name__ == "__main__":
