@@ -634,7 +634,7 @@ It matters not who wears the crown, so long as the Church is respected.""",
             "position": {"x": 15, "y": 65},
             "sprite": "/assets/advisors/bishop_sprite.png",
             "personality": "Spiritual but political, Long view thinker, Pragmatic about Barbarians, Increasingly powerful, Apocalyptic undertones, Calm in crisis",
-            "hidden_agenda": " Transfer loyalty from dying Empire to eternal Church; make Church the permanent institution",
+            "hidden_agenda": "Transfer loyalty from dying Empire to eternal Church; make Church the permanent institution",
             "tell": "Faith transcends empires"
         },
         {
@@ -642,7 +642,7 @@ It matters not who wears the crown, so long as the Church is respected.""",
             "name": "Sidonius (Noble)",
             "position": {"x": 85, "y": 60},
             "sprite": "/assets/advisors/sidonius_sprite.png",
-            "personality": ";ast classical Roman, Cultured aristocrat, Mournful elegance, Landowner's concerns, Conflicted, Dignified in defeat",
+            "personality": "Last classical Roman, Cultured aristocrat, Mournful elegance, Landowner's concerns, Conflicted, Dignified in defeat",
             "hidden_agenda": "Preserve Roman aristocratic estates and prevent land redistribution to barbarian soldiers",
             "tell": "Roman civilization must endure"
         }
