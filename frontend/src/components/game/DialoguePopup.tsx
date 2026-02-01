@@ -74,9 +74,7 @@ export const DialoguePopup = () => {
       >
         {/* Left: Advisor Profile */}
         <div className="w-1/3 bg-stone-950 border-r border-stone-800 p-6 flex flex-col items-center text-center relative">
-          <div className="w-32 h-32 rounded-full border-2 border-roman-gold overflow-hidden mb-4 bg-stone-800">
-            <img src={advisor.portrait} alt={advisor.name} className="w-full h-full object-cover" />
-          </div>
+          <img src={advisor.sprite} alt={advisor.name} className="w-full h-full object-cover" />
           <h3 className="text-xl font-serif text-roman-gold">{advisor.name}</h3>
           <p className="text-stone-400 text-sm mb-6">{advisor.title}</p>
 
@@ -87,7 +85,7 @@ export const DialoguePopup = () => {
             </p>
           </div>
 
-          <div className="mt-auto w-full">
+          <div className="mt-auto pt-4 w-full">
             <button
               onClick={handleEndConversation}
               className="w-full py-3 border border-red-900 text-red-500 hover:bg-red-900/20 rounded transition-colors uppercase text-sm tracking-widest"

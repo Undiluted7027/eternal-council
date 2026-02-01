@@ -5,7 +5,7 @@ import { type Stats } from '../../types';
 
 export const EvidencePopup = () => {
   const { activeItemId, eraData, closePopup } = useGameStore();
-  
+
   const item = eraData?.evidence.find(e => e.id === activeItemId);
   if (!item) return null;
 
@@ -19,7 +19,7 @@ export const EvidencePopup = () => {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-      <motion.div 
+      <motion.div
         initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         exit={{ scale: 0.9, opacity: 0 }}
@@ -29,7 +29,7 @@ export const EvidencePopup = () => {
         {/* Header */}
         <div className="flex justify-between items-center p-6 border-b-2 border-stone-400">
           <h2 className="text-3xl font-serif font-bold text-roman-red">{item.title}</h2>
-          <button 
+          <button
             onClick={closePopup}
             className="p-1 hover:bg-stone-300 rounded transition-colors"
           >
@@ -41,7 +41,11 @@ export const EvidencePopup = () => {
         <div className="p-8 flex flex-col md:flex-row gap-8">
           {/* Visual Representation */}
           <div className="w-32 h-32 shrink-0 bg-stone-200 border-2 border-stone-400 flex items-center justify-center text-6xl shadow-inner">
-            {item.sprite}
+            <img
+              src={item.sprite}
+              alt={item.title}
+              className="w-full h-full object-contain block"
+            />
           </div>
 
           <div className="flex-1 space-y-6">
@@ -59,9 +63,9 @@ export const EvidencePopup = () => {
             {/* Stat Impacts */}
             {item.stat_impact && (
               <div className="flex gap-4 text-sm bg-white/50 p-2 rounded">
-                 {Object.entries(item.stat_impact).map(([key, val]) => (
-                   <StatImpact key={key} stat={key} val={val as number} />
-                 ))}
+                {Object.entries(item.stat_impact).map(([key, val]) => (
+                  <StatImpact key={key} stat={key} val={val as number} />
+                ))}
               </div>
             )}
           </div>

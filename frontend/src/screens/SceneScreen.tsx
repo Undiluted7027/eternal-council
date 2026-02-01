@@ -80,11 +80,15 @@ export const SceneScreen = () => {
                         onMouseLeave={() => setHoveredItem(null)}
                     >
                         {/* Sprite */}
-                        <div className="text-6xl filter drop-shadow-[0_0_10px_rgba(0,0,0,0.8)] relative">
-                            {advisor.sprite}
-                            {/* Status Indicator */}
+                        <div className="relative w-24 h-24 drop-shadow-[0_0_10px_rgba(0,0,0,0.8)]">
+                            <img
+                                src={advisor.sprite}
+                                alt={advisor.name}
+                                className="w-full h-full object-contain block"
+                            />
+
                             {advisorsConsulted.includes(advisor.id) && (
-                                <div className="absolute -top-2 -right-2 bg-green-500 rounded-full p-1 w-6 h-6 flex items-center justify-center border-2 border-black">
+                                <div className="absolute -top-2 -right-2 bg-green-500 rounded-full w-6 h-6 flex items-center justify-center border-2 border-black">
                                     <span className="text-xs text-black font-bold">✓</span>
                                 </div>
                             )}
@@ -116,9 +120,19 @@ export const SceneScreen = () => {
                         onMouseEnter={() => setHoveredItem(item.title)}
                         onMouseLeave={() => setHoveredItem(null)}
                     >
-                        <div className={`text-4xl filter drop-shadow-lg transition-all duration-300 ${evidenceViewed.includes(item.id) ? 'opacity-50 grayscale' : 'animate-pulse'}`}>
-                            {item.sprite}
+                        <div
+                            className={`relative w-16 h-16 transition-all duration-300 drop-shadow-lg ${evidenceViewed.includes(item.id)
+                                    ? 'opacity-50 grayscale'
+                                    : 'animate-pulse'
+                                }`}
+                        >
+                            <img
+                                src={item.sprite}
+                                alt={item.title}
+                                className="w-full h-full object-contain block"
+                            />
                         </div>
+
 
                         <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 bg-black/80 text-blue-200 text-sm px-2 py-1 rounded border border-blue-900 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-20">
                             <div className="flex items-center gap-1">
