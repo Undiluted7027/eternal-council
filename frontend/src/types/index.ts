@@ -26,6 +26,8 @@ export interface Advisor {
     title: string;
     faction: string;
     portrait: string; // URL
+    position: {x: number, y: number};
+    sprite: string; // URL
 }
 
 export interface Evidence {
@@ -36,14 +38,59 @@ export interface Evidence {
     content: string;
     insight: string;
     stat_impact: Partial<Stats>;
+
+}
+
+export interface Choice {
+  id: string;
+  title: string;
+  description: string;
+  supporters: string[]; // list of advisor IDs
+  stat_impact: Partial<Stats>;
 }
 
 export interface EraData {
-    id: number;
-    title: string;
-    year: string;
-    intro_text: string;
-    scene_background: string;
-    evidence: Evidence[];
-    advisors: Advisor[];
+  id: number;
+  title: string;
+  year: string;
+  intro_text: string;
+  scene_background: string;
+  evidence: Evidence[];
+  advisors: Advisor[];
+  choices: Choice[];
+}
+
+export interface ChatMessage {
+  role: 'user' | 'assistant';
+  content: string;
+}
+
+export interface GameSession {
+  session_id: string;
+  current_era: number;
+  stats: Stats;
+  evidence_viewed: string[];
+  choices: Record<string, string>;
+  chats: Record<string, ChatMessage[]>;
+}
+
+export interface TimelineEra {
+  era_id: number;
+  title: string;
+  year: string;
+  player_choice_id: string;
+  player_choice_title: string;
+  player_choice_image: string;
+  player_outcome_text: string;
+  historical_choice_id: string;
+  historical_choice_title: string;
+  historical_choice_image: string;
+  historical_outcome_text: string;
+  aligned_with_history: boolean;
+  stat_impact: Partial<Stats>;
+}
+
+export interface TimelineData {
+  eras: TimelineEra[];
+  correlation_score: number;
 }

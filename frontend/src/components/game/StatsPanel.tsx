@@ -16,7 +16,7 @@ const StatItem = ({ icon: Icon, value, label, color }: any) => (
       animate={{ scale: 1, color: "#e5e7eb" }}
       className="text-sm font-bold font-serif"
     >
-      {value}%
+      {value}
     </motion.span>
     {/* Progress Bar Background */}
     <div className="w-12 h-1.5 bg-gray-700 rounded-full overflow-hidden">

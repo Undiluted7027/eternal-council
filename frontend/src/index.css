@@ -11,3 +11,9 @@
   --font-serif: "Cinzel", serif;
   --font-sans: "Lato", sans-serif;
 }
+
+body {
+  @apply bg-stone-950 text-roman-parchment;
+  margin: 0;
+  padding: 0;
+}
