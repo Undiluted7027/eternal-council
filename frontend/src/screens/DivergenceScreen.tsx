@@ -25,7 +25,7 @@ export const DivergenceScreen = () => {
     if (diff <= -5)  return { symbol: '-',  color: 'text-red-400' };
     
     // Low impact or no change
-    return { symbol: '—', color: 'text-stone-600' };
+    return { symbol: '=', color: 'text-stone-400' };
   };
 
   const handleContinue = () => {
@@ -66,7 +66,7 @@ export const DivergenceScreen = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2 }}
-                  className="bg-black/40 p-4 rounded-lg border border-stone-800 flex flex-col items-center justify-center min-h-[110px]"
+                  className="bg-black/40 p-4 rounded-lg border border-stone-800 flex flex-col items-center justify-center min-h-27.5"
                 >
                   {/* Label and Icon */}
                   <div className={`flex items-center justify-center gap-2 mb-2 ${color}`}>

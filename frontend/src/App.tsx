@@ -29,7 +29,7 @@ function App() {
   return (
     <div className="relative w-full h-screen overflow-hidden bg-stone-950 font-sans select-none">
       {/* Persistent UI */}
-      {currentScreen !== 'TITLE' && <StatsPanel />}
+      {currentScreen !== 'TITLE' && currentScreen !== 'DIVERGENCE' && currentScreen !== 'ERA_INTRO' && <StatsPanel />}
 
       {/* Screen Router */}
       {currentScreen === 'TITLE' && <TitleScreen />}

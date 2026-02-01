@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useGameStore } from '../store/gameStore';
-import { StatsPanel } from '../components/game/StatsPanel';
+// import { StatsPanel } from '../components/game/StatsPanel';
 
 const toRomanNumeral = (num: number): string => {
   const numerals: [number, string][] = [
@@ -57,7 +57,7 @@ export const EraIntro = () => {
 
 
       {/* Stats Panel */}
-      <StatsPanel />
+      {/* <StatsPanel /> */}
 
       <div className="max-w-3xl px-8 z-10 text-center">
         <motion.div

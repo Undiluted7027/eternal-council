@@ -32,52 +32,66 @@ export const DecisionScreen = () => {
             initial={{ opacity: 0, x: index === 0 ? -50 : 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2 * index }}
-            className="flex-1 bg-black/40 border border-stone-600 hover:border-roman-gold rounded-lg p-6 group cursor-pointer transition-all duration-300 hover:bg-black/60 relative overflow-hidden"
+            className="flex-1 bg-black/40 border border-stone-600 hover:border-roman-gold rounded-lg overflow-hidden group cursor-pointer transition-all duration-300 hover:bg-black/60 relative"
             onClick={() => !isLoading && handleChoice(choice.id)}
           >
             {/* Hover Glow */}
-            <div className="absolute inset-0 bg-roman-gold opacity-0 group-hover:opacity-5 transition-opacity"></div>
+            <div className="absolute inset-0 bg-roman-gold opacity-0 group-hover:opacity-5 transition-opacity pointer-events-none z-10"></div>
 
-            <h3 className="text-2xl font-serif text-roman-parchment group-hover:text-roman-gold mb-4 transition-colors">
-              {choice.title}
-            </h3>
-
-            <p className="text-stone-300 leading-relaxed mb-6 h-24">
-              {choice.description}
-            </p>
-
-            <div className="border-t border-stone-700 pt-4">
-              <div className="text-xs uppercase text-stone-500 mb-2 font-bold tracking-widest">Expected Impact</div>
-              <div className="flex gap-4 text-sm">
-                {/* Assuming choice has stat_impact object */}
-                {choice.stat_impact && Object.entries(choice.stat_impact).map(([stat, val]: any) => (
-                  <span key={stat} className={val > 0 ? "text-green-500" : "text-red-500"}>
-                    {stat.charAt(0).toUpperCase() + stat.slice(1)} {val > 0 ? '+' : '-'}
-                  </span>
-                ))}
+            {/* Choice Image */}
+            {choice.image && (
+              <div className="relative h-48 overflow-hidden">
+                <img 
+                  src={choice.image} 
+                  alt={choice.title}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
               </div>
-            </div>
+            )}
 
-            <div className="border-t border-stone-700 pt-4 mt-4">
-              <div className="text-xs uppercase text-stone-500 mb-2">Supported By</div>
-              <div className="flex gap-2 flex-wrap">
-                {choice.supporters?.map((id: string) => {
-                  const advisor = eraData.advisors?.find((a: any) => a.id === id);
-                  return advisor ? (
-                    <span key={id} className="px-2 py-1 bg-stone-800 rounded text-stone-300 text-xs">
-                      {advisor.name}
+            <div className="p-6">
+              <h3 className="text-2xl font-serif text-roman-parchment group-hover:text-roman-gold mb-4 transition-colors">
+                {choice.title}
+              </h3>
+
+              <p className="text-stone-300 leading-relaxed mb-6">
+                {choice.description}
+              </p>
+
+              <div className="border-t border-stone-700 pt-4">
+                <div className="text-xs uppercase text-stone-500 mb-2 font-bold tracking-widest">Expected Impact</div>
+                <div className="flex gap-4 text-sm flex-wrap">
+                  {/* Assuming choice has stat_impact object */}
+                  {choice.stat_impact && Object.entries(choice.stat_impact).map(([stat, val]: any) => (
+                    <span key={stat} className={val > 0 ? "text-green-500" : val < 0 ? "text-red-500" : "text-gray-500"}>
+                      {stat.charAt(0).toUpperCase() + stat.slice(1)} {val > 0 ? `+${val}` : val}
                     </span>
-                  ) : null;
-                })}
+                  ))}
+                </div>
               </div>
-            </div>
 
-            <button
-              disabled={isLoading}
-              className="w-full mt-8 py-3 border border-stone-500 text-stone-400 group-hover:bg-roman-gold group-hover:text-black group-hover:border-roman-gold transition-all uppercase tracking-widest text-sm font-bold"
-            >
-              {isLoading ? "Consulting..." : "CHOOSE"}
-            </button>
+              <div className="border-t border-stone-700 pt-4 mt-4">
+                <div className="text-xs uppercase text-stone-500 mb-2">Supported By</div>
+                <div className="flex gap-2 flex-wrap">
+                  {choice.supporters?.map((id: string) => {
+                    const advisor = eraData.advisors?.find((a: any) => a.id === id);
+                    return advisor ? (
+                      <span key={id} className="px-2 py-1 bg-stone-800 rounded text-stone-300 text-xs">
+                        {advisor.name}
+                      </span>
+                    ) : null;
+                  })}
+                </div>
+              </div>
+
+              <button
+                disabled={isLoading}
+                className="w-full mt-6 py-3 border border-stone-500 text-stone-400 group-hover:bg-roman-gold group-hover:text-black group-hover:border-roman-gold transition-all uppercase tracking-widest text-sm font-bold"
+              >
+                {isLoading ? "Consulting..." : "CHOOSE"}
+              </button>
+            </div>
           </motion.div>
         ))}
       </div>
