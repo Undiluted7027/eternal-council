@@ -601,7 +601,7 @@ He is twelve years old. He cries during council meetings.""",
             "id": "era5_bishop_sermon",
             "title": "Bishop's Sermon",
             "position": {"x": 65, "y": 55},
-            "sprite": "/assets/evidence/book.png",
+            "sprite": "/assets/evidence/letter.png",
             "content": """The City of God is eternal; the City of Man crumbles.
 It matters not who wears the crown, so long as the Church is respected.""",
             "insight": "The Church is preparing for life after the Empire. They will accept a barbarian King if he is Christian.",
