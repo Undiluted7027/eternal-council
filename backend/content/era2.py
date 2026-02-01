@@ -6,13 +6,13 @@ ERA_2_DATA = {
 Rumors swirl that he intends to be crowned King before marching on Parthia.
 Sixty Senators have hidden daggers beneath their togas. The session is about to begin.""",
     
-    "scene_background": "/assets/scenes/era2_senate.png",
+    "scene_background": "/assets/gameplaybg.png",
     
     "evidence": [
         {
             "id": "era2_parthian_oracle",
             "title": "Sibylline Prophecy",
-            "position": {"x": 80, "y": 30},
+            "position": {"x": 49, "y": 68},
             "sprite": "/assets/evidence/scroll.png",
             "content": """FROM THE SIBYLLINE BOOKS:
 "Only a King may conquer the Parthians."
@@ -23,7 +23,7 @@ Sixty Senators have hidden daggers beneath their togas. The session is about to 
         {
             "id": "era2_anthony_diadem",
             "title": "Discarded Diadem",
-            "position": {"x": 25, "y": 70},
+            "position": {"x": 46, "y": 73},
             "sprite": "/assets/evidence/vase.png",
             "content": """A white ribbon (diadem) symbolizing royalty.
 Antony offered this to Caesar at the Lupercalia festival.
@@ -34,7 +34,7 @@ Caesar refused it... but the crowd's applause was tepid until he did.""",
         {
             "id": "era2_assassin_list",
             "title": "Scrap of Parchment",
-            "position": {"x": 15, "y": 80},
+            "position": {"x": 55, "y": 68},
             "sprite": "/assets/evidence/letter.png",
             "content": """Cassius,
 Brutus wavers. He needs to believe this is for Rome, not for power.
@@ -46,7 +46,7 @@ Burn this.""",
         {
             "id": "era2_caesar_reforms",
             "title": "Administrative Tablet",
-            "position": {"x": 60, "y": 55},
+            "position": {"x": 52, "y": 74},
             "sprite": "/assets/evidence/tablet.png",
             "content": """CALENDAR REFORM: Year adjusted to 365 days.
 DEBT REFORM: Interest capped.
@@ -57,7 +57,7 @@ COLONY PLANS: Land for 80,000 poor citizens in Carthage and Corinth.""",
         {
             "id": "era2_calpurnia_dream",
             "title": "Calpurnia's Note",
-            "position": {"x": 40, "y": 25},
+            "position": {"x": 43, "y": 68},
             "sprite": "/assets/evidence/letter.png",
             "content": """My husband,
 I dreamt the pinnacle of our house collapsed.
@@ -72,25 +72,25 @@ Do not go to the Senate today. Even the priests say the omens are bad without a 
         {
             "id": "brutus",
             "name": "Senator Brutus",
-            "position": {"x": 30, "y": 45},
+            "position": {"x": 30, "y": 67},
             "sprite": "/assets/advisors/brutus_sprite.png"
         },
         {
             "id": "antony",
             "name": "Mark Antony",
-            "position": {"x": 70, "y": 40},
+            "position": {"x": 60, "y": 57},
             "sprite": "/assets/advisors/antony_sprite.png"
         },
         {
             "id": "cassius",
             "name": "Senator Cassius",
-            "position": {"x": 15, "y": 55},
+            "position": {"x": 15, "y": 54},
             "sprite": "/assets/advisors/cassius_sprite.png"
         },
         {
             "id": "calpurnia",
             "name": "Calpurnia",
-            "position": {"x": 50, "y": 65},
+            "position": {"x": 75, "y": 54},
             "sprite": "/assets/advisors/calpurnia_sprite.png"
         }
     ],
@@ -102,7 +102,7 @@ Do not go to the Senate today. Even the priests say the omens are bad without a 
             "description": "The tree of liberty must be watered with the blood of tyrants. Strike him down in the Senate.",
             "supporters": ["brutus", "cassius"],
             "image": "/assets/choices/era2_assassinate.png",
-            "stat_impact": {"republic": 15, "stability": -25, "economy": -10, "military": -10},
+            "stat_impact": {"military": -10, "economy": -10, "stability": -25, "republic": 15},
             "outcome_text": "Caesar falls beneath 23 daggers. But there is no plan for what comes next. Chaos engulfs Rome.",
             "outcome_scene": "era2_chaos"
         },
@@ -112,7 +112,7 @@ Do not go to the Senate today. Even the priests say the omens are bad without a 
             "description": "Warn Caesar. Arrest the conspirators. Allow Caesar to rule as King in all but name.",
             "supporters": ["antony", "calpurnia"],
             "image": "/assets/choices/era2_expose.png",
-            "stat_impact": {"republic": -20, "stability": 15, "economy": 10, "military": 10},
+            "stat_impact": {"military": 10, "economy": 10, "stability": 15, "republic": -20},
             "outcome_text": "The conspirators are arrested. Brutus is exiled. Caesar marches on Parthia, returning as absolute monarch.",
             "outcome_scene": "era2_monarchy"
         }
