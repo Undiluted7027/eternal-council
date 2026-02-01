@@ -12,7 +12,7 @@ const TitleScreen = () => {
   const startGame = useGameStore(s => s.startGame);
   return (
     <div className="h-screen flex flex-col items-center justify-center bg-stone-900 text-roman-gold">
-      <h1 className="text-6xl font-serif mb-8">THE ETERNAL COUNCIL</h1>
+      <h1 className="text-6xl font-serif mb-8">Divergence</h1>
       <button
         onClick={startGame}
         className="px-8 py-3 bg-roman-red text-white font-serif text-xl rounded border-2 border-roman-gold hover:bg-red-900 transition-colors"
