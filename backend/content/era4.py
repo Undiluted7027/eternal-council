@@ -6,7 +6,7 @@ ERA_4_DATA = {
 The General Maximinus Thrax claims the throne. He is a soldier, not a politician.
 The borders burn. The money is worthless. The Empire is fracturing.""",
     
-    "scene_background": "/assets/gameplaybg.png",
+    "scene_background": "/assets/scenees/era4_camp.png",
     
     "evidence": [
         {

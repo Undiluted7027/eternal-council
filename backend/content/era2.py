@@ -6,7 +6,7 @@ ERA_2_DATA = {
 Rumors swirl that he intends to be crowned King before marching on Parthia.
 Sixty Senators have hidden daggers beneath their togas. The session is about to begin.""",
     
-    "scene_background": "/assets/gameplaybg.png",
+    "scene_background": "/assets/scenes/era2_senate.png",
     
     "evidence": [
         {

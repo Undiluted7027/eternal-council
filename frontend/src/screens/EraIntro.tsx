@@ -41,8 +41,20 @@ export const EraIntro = () => {
 
   return (
     <div className="h-screen w-full flex items-center justify-center bg-stone-950 relative overflow-hidden">
-      {/* Background Ambience */}
-      <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-10"></div>
+      {/* Background Image from Era Data */}
+      <motion.div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{ backgroundImage: `url(${eraData.scene_background})` }}
+        // 1. Start fully opaque
+        initial={{ opacity: 1 }}
+        // 2. Animate to a dimmer state (e.g., 30% opacity)
+        animate={{ opacity: 0.4 }}
+        // 3. IMPORTANT: Delay this animation to match the text fade-in
+        transition={{ duration: 1, ease: 'easeOut' }}
+      >
+        <div className="absolute inset-0 bg-gradient-radial from-transparent via-stone-950/50 to-stone-950"></div>
+      </motion.div>
+
 
       {/* Stats Panel */}
       <StatsPanel />
@@ -51,9 +63,9 @@ export const EraIntro = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ delay: 1.5, duration: 0.8 }}
         >
-          <div className="text-roman-red font-serif tracking-[0.3em] mb-4 text-sm uppercase">
+          <div className="text-roman-red font-serif tracking-[0.3em] mb-4 text-sm uppercase font-bold">
             Era {toRomanNumeral(eraData.id)}
           </div>
           <h1 className="text-6xl md:text-8xl font-serif text-roman-gold mb-2 drop-shadow-lg uppercase">
@@ -67,7 +79,7 @@ export const EraIntro = () => {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1, duration: 1 }}
+          transition={{ delay: 3, duration: 1 }}
           className="text-lg md:text-xl text-roman-parchment leading-relaxed mb-12 border-t border-b border-stone-800 py-8 whitespace-pre-line"
         >
           {eraData.intro_text}

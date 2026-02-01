@@ -36,10 +36,10 @@ export const SceneScreen = () => {
     return (
         <div className="relative w-full h-screen bg-black overflow-hidden">
 
-            {/* 1. Background Scene */}
+            {/* 1. Background Scene - Always gameplaybg.png for all eras */}
             <div
                 className="absolute inset-0 bg-cover bg-center opacity-80"
-                style={{ backgroundImage: `url(${eraData.scene_background})` }}
+                style={{ backgroundImage: `url(/assets/gameplaybg.png)` }}
             >
                 {/* Vignette overlay */}
                 <div className="absolute inset-0 bg-radial-gradient from-transparent to-black opacity-60 pointer-events-none" />

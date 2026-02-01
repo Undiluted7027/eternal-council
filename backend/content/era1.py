@@ -6,7 +6,7 @@ ERA_1_DATA = {
 To cross is treason. To retreat is death.
 The Council has gathered. They await your wisdom.""",
     
-    "scene_background": "/assets/gameplaybg.png",
+    "scene_background": "/assets/scenes/era1_forum.png",
     
     "evidence": [
         {
