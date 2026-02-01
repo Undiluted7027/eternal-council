@@ -12,7 +12,7 @@ The borders burn. The money is worthless. The Empire is fracturing.""",
         {
             "id": "era4_debased_coin",
             "title": "Handful of Antoniniani",
-            "position": {"x": 30, "y": 65},
+            "position": {"x": 45, "y": 68},
             "sprite": "/assets/evidence/vase.png",
             "content": """New silver coins issued by the mint.
 Wait... the silver rubs off. Underneath, it is copper.
@@ -23,7 +23,7 @@ Silver content: Less than 40%.""",
         {
             "id": "era4_border_report",
             "title": "Bloodied Dispatch",
-            "position": {"x": 15, "y": 50},
+            "position": {"x": 43, "y": 73},
             "sprite": "/assets/evidence/scroll.png",
             "content": """Rhine Frontier: The Alamanni have breached the limes.
 Danube Frontier: The Goths are massing.
@@ -34,7 +34,7 @@ We need more men. We need more gold.""",
         {
             "id": "era4_senate_letter",
             "title": "Senate Condemnation",
-            "position": {"x": 75, "y": 30},
+            "position": {"x": 49, "y": 73},
             "sprite": "/assets/evidence/letter.png",
             "content": """To the Legions:
 Maximinus is a barbarian usurper. He is declared Enemy of the State.
@@ -45,7 +45,7 @@ The Senate recognizes Gordian as Emperor.""",
         {
             "id": "era4_plague_report",
             "title": "Physician's Ledger",
-            "position": {"x": 55, "y": 80},
+            "position": {"x": 55, "y": 73},
             "sprite": "/assets/evidence/scroll.png",
             "content": """The 'Plague of Cyprian' spreads.
 5,000 die daily in Rome. The fields lie fallow. The army is understrength.""",
@@ -55,7 +55,7 @@ The Senate recognizes Gordian as Emperor.""",
         {
             "id": "era4_soldier_demand",
             "title": "Soldier's Graffiti",
-            "position": {"x": 90, "y": 55},
+            "position": {"x": 52, "y": 68},
             "sprite": "/assets/evidence/tablet.png",
             "content": """Scratched into the wall:
 'Enrich the soldiers, scorn all other men.'
@@ -69,25 +69,25 @@ The Senate recognizes Gordian as Emperor.""",
         {
             "id": "maximinus",
             "name": "General Thrax",
-            "position": {"x": 25, "y": 35},
+            "position": {"x": 27, "y": 53.5},
             "sprite": "/assets/advisors/thrax_sprite.png"
         },
         {
             "id": "gordian",
             "name": "Senator Gordian",
-            "position": {"x": 70, "y": 45},
+            "position": {"x": 70, "y": 53},
             "sprite": "/assets/advisors/gordian_sprite.png"
         },
         {
             "id": "timesitheus",
             "name": "Prefect Timesitheus",
-            "position": {"x": 50, "y": 60},
+            "position": {"x": 57, "y": 57},
             "sprite": "/assets/advisors/timesitheus_sprite.png"
         },
         {
             "id": "merchant_guild",
             "name": "Guildmaster",
-            "position": {"x": 85, "y": 70},
+            "position": {"x": 86, "y": 68},
             "sprite": "/assets/advisors/merchant_sprite.png"
         }
     ],
@@ -99,7 +99,7 @@ The Senate recognizes Gordian as Emperor.""",
             "description": "Crush the Senate. Debase the coin further to pay the legions. Rome is an army with a state.",
             "supporters": ["maximinus", "timesitheus"],
             "image": "/assets/choices/era4_military.png",
-            "stat_impact": {"military": 20, "stability": 10, "economy": -20, "republic": -20},
+            "stat_impact": {"military": 20, "economy": -20, "stability": 10, "republic": -20},
             "outcome_text": "The Empire survives as a military dictatorship. The economy is ruined, but the borders hold... for now.",
             "outcome_scene": "era4_dictator"
         },
@@ -109,7 +109,7 @@ The Senate recognizes Gordian as Emperor.""",
             "description": "Allow Gaul and Palmyra to govern themselves. Focus on local defense. Decentralize Rome.",
             "supporters": ["gordian", "merchant_guild"],
             "image": "/assets/choices/era4_split.png",
-            "stat_impact": {"economy": 15, "stability": -10, "military": -10, "republic": 5},
+            "stat_impact": {"military": -10, "economy": 15, "stability": -10, "republic": 5},
             "outcome_text": "The Empire splits into three. While economically healthier, the unified Roman front is gone forever.",
             "outcome_scene": "era4_split"
         }
