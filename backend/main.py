@@ -9,6 +9,7 @@ from content.era4 import ERA_4_DATA
 from content.era5 import ERA_5_DATA
 from models.game import GameSession, Stats
 from ai.advisor_logic import get_advisor_response
+from datetime import datetime
 
 def update_stats(current_stats, impact_dict):
     """
@@ -53,9 +54,11 @@ def read_root():
 @app.post("/game/start", response_model=GameSession)
 async def start_game():
     session_id = str(uuid.uuid4())
-    new_session = GameSession(session_id=session_id)
+    new_session = GameSession(
+        session_id=session_id, 
+        start_time=datetime.now() 
+    )    
     sessions[session_id] = new_session
-    print(f"DEBUG: Created session {session_id}") 
     return new_session
 
 @app.get("/game/{session_id}", response_model=GameSession)
@@ -166,6 +169,13 @@ async def get_results(session_id: str):
     session = sessions.get(session_id)
     if not session:
         raise HTTPException(status_code=404, detail="Session not found")
+    
+    session.end_time = datetime.now()
+    duration = session.end_time - session.start_time
+    total_seconds = int(duration.total_seconds())
+    minutes = total_seconds // 60
+    seconds = total_seconds % 60
+    time_string = f"{minutes}m {seconds}s" if minutes > 0 else f"{seconds}s"
 
     # Calculate correlation (matches / 5 eras)
     matches = sum(1 for era_id in range(1, 6)
@@ -195,6 +205,7 @@ async def get_results(session_id: str):
                        "stability": stats.stability, "republic": stats.republic},
         "final_state": {"survival_year": f"{survival_year} AD",
                        "government": government, "legacy": legacy},
+        "total_time_played": time_string,
         "correlation_score": correlation_score
     }
 

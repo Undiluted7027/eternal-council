@@ -1,5 +1,7 @@
 from pydantic import BaseModel
 from typing import List, Dict, Optional
+from datetime import datetime
+
 
 class Stats(BaseModel):
     military: int = 50
@@ -15,3 +17,5 @@ class GameSession(BaseModel):
     choices: Dict[int, str] = {}
     #Stores history like {"caelius": [{"role": "user", "content": "..."}, ...]}
     chats: Dict[str, List[Dict[str, str]]] = {}
+    start_time: Optional[datetime] = None
+    end_time: Optional[datetime] = None

@@ -12,6 +12,7 @@ interface ResultsData {
     legacy: string;
   };
   correlation_score: number;
+  total_time_played: string;
 }
 
 export const ResultsScreen = () => {
@@ -72,7 +73,11 @@ export const ResultsScreen = () => {
                  "You balanced tradition with new choices."}
             </p>
         </div>
-
+        <div className="mt-4 mb-4">
+          <p className="text-roman-gold font-serif text-xl tracking-wide">
+            Time played: <span className="text-white">{results.total_time_played}</span>
+          </p>
+        </div>
         <div className="flex justify-center gap-6">
             <button
                 onClick={() => setScreen('TIMELINE')}
