@@ -54,7 +54,6 @@ async def start_game():
 @app.get("/game/{session_id}", response_model=GameSession)
 async def get_game_state(session_id: str):
     if session_id not in sessions:
-        # This triggers the 404 error
         raise HTTPException(status_code=404, detail="Session not found")
     return sessions[session_id]
 
@@ -83,13 +82,15 @@ async def view_evidence(evidence_id: str, session_id: str):
     # 2. Check if they already viewed it (prevent double-dipping stats)
     if evidence_id in session.evidence_viewed:
         return {"message": "Already viewed"}
+    
+    session.stats = update_stats(session.stats, evidence_item["stat_impact"])
 
-    # 3. Record that it was viewed
     session.evidence_viewed.append(evidence_id)
     
     return {
         "message": f"Viewed {evidence_item['title']}",
-        "evidence_content": evidence_item["content"]
+        "evidence_content": evidence_item["content"],
+        "evidence_insight": evidence_item["insight"]
     }
 
 @app.post("/game/decision")

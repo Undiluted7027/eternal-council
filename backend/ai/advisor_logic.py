@@ -9,6 +9,13 @@ async def get_advisor_response(advisor_id, player_message, session, era_data):
     from content.advisors import ADVISOR_CONFIGS
     
     config = ADVISOR_CONFIGS.get(advisor_id, {})
+
+    known_insights = []
+    for ev_id in session.evidence_viewed:
+        # Find the evidence object in era_data to get its 'insight'
+        ev_item = next((e for e in era_data["evidence"] if e["id"] == ev_id), None)
+        if ev_item:
+            known_insights.append(ev_item["insight"])
     
     # 1. Build the System Prompt (The AI's Instructions)
     system_instruction = f"""
@@ -17,14 +24,16 @@ async def get_advisor_response(advisor_id, player_message, session, era_data):
     Hidden Agenda: {config.get('hidden_agenda')}
     Your Secret 'Tell': {config.get('tell')} (Use this subtly when lying).
     
-    Current Rome Stats: {session.stats}
-    Player has viewed these evidences: {session.evidence_viewed}
+    Current Situation:
+    - Rome Stats: {session.stats}
+    - The player has discovered these facts: {", ".join(known_insights) if known_insights else "Nothing yet."}    
     
     Rules:
     - Stay in character.
     - Keep responses to 2-4 sentences.
     - Do not admit you are an AI.
     - If the player challenges you with evidence, be defensive but stay in character.
+    - Refer to the location's name by what it was used during ancient Rome (46 BC to collapse of Rome)
     """
 
     # 2. Get existing chat history for this advisor
