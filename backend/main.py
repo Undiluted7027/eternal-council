@@ -131,6 +131,7 @@ async def make_decision(session_id: str, choice_id: str):
     # 3. Store the choice and advance the Era
     session.choices[session.current_era] = choice_id
     session.current_era += 1 
+    session.evidence_viewed = []
 
     return {
         "outcome_text": choice["outcome_text"],

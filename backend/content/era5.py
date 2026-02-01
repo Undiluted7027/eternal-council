@@ -12,7 +12,7 @@ Outside the walls, the barbarian general Odoacer waits. He demands land, or he w
         {
             "id": "era5_empty_treasury",
             "title": "The Imperial Vault",
-            "position": {"x": 20, "y": 60},
+            "position": {"x": 52, "y": 73},
             "sprite": "/assets/evidence/vase.png",
             "content": """Dust and cobwebs.
 There is no gold to pay the mercenaries.
@@ -23,7 +23,7 @@ We have not paid the Foederati (allied troops) in months.""",
         {
             "id": "era5_odoacer_petition",
             "title": "Odoacer's Petition",
-            "position": {"x": 50, "y": 45},
+            "position": {"x": 49, "y": 68},
             "sprite": "/assets/evidence/scroll.png",
             "content": """My troops have fought for Rome for years. We have no homes.
 Grant us one-third of the land in Italy to settle, and we will serve you as loyal subjects forever.""",
@@ -33,7 +33,7 @@ Grant us one-third of the land in Italy to settle, and we will serve you as loya
         {
             "id": "era5_zeno_letter",
             "title": "Letter from Constantinople",
-            "position": {"x": 80, "y": 30},
+            "position": {"x": 55, "y": 68},
             "sprite": "/assets/evidence/letter.png",
             "content": """From Emperor Zeno (East Rome):
 "I cannot send troops. The West is your problem.
@@ -44,7 +44,7 @@ However, Odoacer seems... reasonable. Treat with him." """,
         {
             "id": "era5_romulus_toy",
             "title": "Child's Toy",
-            "position": {"x": 35, "y": 75},
+            "position": {"x": 46, "y": 73},
             "sprite": "/assets/evidence/vase.png",
             "content": """A wooden sword belonging to Emperor Romulus.
 He is twelve years old. He cries during council meetings.""",
@@ -54,8 +54,8 @@ He is twelve years old. He cries during council meetings.""",
         {
             "id": "era5_bishop_sermon",
             "title": "Bishop's Sermon",
-            "position": {"x": 65, "y": 55},
-            "sprite": "/assets/evidence/book.png",
+            "position": {"x": 43, "y": 68},
+            "sprite": "/assets/evidence/letter.png",
             "content": """The City of God is eternal; the City of Man crumbles.
 It matters not who wears the crown, so long as the Church is respected.""",
             "insight": "The Church is preparing for life after the Empire. They will accept a barbarian King if he is Christian.",
@@ -67,25 +67,25 @@ It matters not who wears the crown, so long as the Church is respected.""",
         {
             "id": "orestes",
             "name": "Regent Orestes",
-            "position": {"x": 30, "y": 40},
+            "position": {"x": 30, "y": 53.5},
             "sprite": "/assets/advisors/orestes_sprite.png"
         },
         {
             "id": "odoacer_envoy",
             "name": "Gothic Envoy",
-            "position": {"x": 70, "y": 50},
+            "position": {"x": 70, "y": 53},
             "sprite": "/assets/advisors/envoy_sprite.png"
         },
         {
             "id": "bishop",
             "name": "Bishop of Ravenna",
-            "position": {"x": 15, "y": 65},
+            "position": {"x": 17, "y": 64.5},
             "sprite": "/assets/advisors/bishop_sprite.png"
         },
         {
             "id": "sidonius",
             "name": "Sidonius (Noble)",
-            "position": {"x": 85, "y": 60},
+            "position": {"x": 87, "y": 60.5},
             "sprite": "/assets/advisors/sidonius_sprite.png"
         }
     ],
@@ -97,7 +97,7 @@ It matters not who wears the crown, so long as the Church is respected.""",
             "description": "Refuse the land. Rome does not bow to mercenaries. Defend the sovereignty of the Empire.",
             "supporters": ["orestes", "sidonius"],
             "image": "/assets/choices/era5_resist.png",
-            "stat_impact": {"republic": 10, "military": -20, "stability": -20, "economy": -10},
+            "stat_impact": {"military": -20, "economy": -10, "stability": -20, "republic": 10},
             "outcome_text": "Odoacer storms the city. Orestes is executed. Romulus is deposed. The Western Empire falls.",
             "outcome_scene": "era5_fall"
         },
@@ -107,7 +107,7 @@ It matters not who wears the crown, so long as the Church is respected.""",
             "description": "Grant the land. Accept Odoacer as Supreme Commander. Create a new Roman-Gothic state.",
             "supporters": ["odoacer_envoy", "bishop"],
             "image": "/assets/choices/era5_integrate.png",
-            "stat_impact": {"stability": 15, "military": 15, "republic": -30, "economy": 10},
+            "stat_impact": {"military": 15, "economy": 10, "stability": 15, "republic": -30},
             "outcome_text": "The Empire evolves. A hybrid kingdom rises, preserving Roman law under Gothic swords. The 'Fall' never happens.",
             "outcome_scene": "era5_survival"
         }
