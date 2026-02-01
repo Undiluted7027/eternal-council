@@ -54,7 +54,7 @@ export const DecisionScreen = () => {
                         } 
                       }}
                       exit={{ y: 40, opacity: 0, scale: 0.5 }}
-                      className="w-20 h-20 object-contain drop-shadow-[0_0_15px_rgba(212,175,55,0.8)]"
+                      className="w-20 h-20 object-contain"
                     />
                   );
                 })}
