@@ -59,3 +59,17 @@ export interface EraData {
   advisors: Advisor[];
   choices: Choice[];
 }
+
+export interface ChatMessage {
+  role: 'user' | 'assistant';
+  content: string;
+}
+
+export interface GameSession {
+  session_id: string;
+  current_era: number;
+  stats: Stats;
+  evidence_viewed: string[];
+  choices: Record<string, string>;
+  chats: Record<string, ChatMessage[]>;
+}

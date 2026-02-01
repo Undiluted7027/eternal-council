@@ -1,4 +1,3 @@
-
 ERA_1_DATA = {
     "id": 1,
     "title": "The Rubicon",

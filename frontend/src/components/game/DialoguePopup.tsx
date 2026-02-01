@@ -3,89 +3,64 @@ import { motion } from 'framer-motion';
 import { Send, User, Bot } from 'lucide-react';
 import { useGameStore } from '../../store/gameStore';
 import { api } from '../../lib/api';
-
-interface Message {
-  role: 'user' | 'assistant';
-  content: string;
-}
+import { type ChatMessage } from '../../types';
 
 export const DialoguePopup = () => {
-  const { activeItemId, eraData } = useGameStore();
+  const { activeItemId, eraData, sessionId, chats, addChatMessage } = useGameStore();
   const [input, setInput] = useState('');
-  const [history, setHistory] = useState<Message[]>([]);
   const [isTyping, setIsTyping] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const advisor = eraData?.advisors.find(a => a.id === activeItemId);
+
+  // Build history: always prepend the greeting, then append any existing chat messages
+  const history = advisor ? [
+    {
+      role: 'assistant',
+      content: `Greetings, Oracle. I am ${advisor.name}. How can the ${advisor.faction} faction assist you today?`
+    } as ChatMessage,
+    ...(chats[advisor.id] || [])
+  ] : [];
 
   // Auto-scroll to bottom
   useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
-  }, [history]);
-
-  // Initial Greeting
-  useEffect(() => {
-    if (advisor && history.length === 0) {
-      setHistory([{
-        role: 'assistant',
-        content: `Greetings, Oracle. I am ${advisor.name}. How can the ${advisor.faction} faction assist you today?`
-      }]);
-    }
-  }, [advisor]);
+  }, [history.length, isTyping]);
 
   if (!advisor) return null;
 
   const handleSend = async () => {
-    if (!input.trim() || !advisor) return;
+    if (!input.trim() || !sessionId) return;
 
-    // 1. Add User Message
-    const userMsg = input;
-    setHistory(prev => [...prev, { role: 'user', content: userMsg }]);
-    setInput('');
+    const userMsgContent = input;
+    setInput(''); // Clear input immediately
     setIsTyping(true);
 
-    // 2. TODO: Simulate AI Response (Backend Integration Point)
+    // 1. Optimistic Update (Show user message immediately)
+    addChatMessage(advisor.id, { role: 'user', content: userMsgContent });
+
     try {
-      // Use the Store's session ID
-      const { sessionId } = useGameStore.getState();
-      if (!sessionId) return;
+      // 2. Call API
+      const data = await api.chatWithAdvisor(advisor.id, userMsgContent, sessionId);
 
-      const data = await api.chatWithAdvisor(advisor.id, userMsg, sessionId);
-
-      setHistory(prev => [...prev, {
-        role: 'assistant',
-        content: data.response
-      }]);
+      // 3. Update with AI Response
+      addChatMessage(advisor.id, { role: 'assistant', content: data.response });
     } catch (err) {
-      setHistory(prev => [...prev, {
-        role: 'assistant',
-        content: "The advisor is silent. (Connection Error)"
-      }]);
+      console.error(err);
+      // Optional: Add an error message to chat
     } finally {
       setIsTyping(false);
     }
   };
 
+
   const handleEndConversation = async () => {
     // Mark as consulted if not already
-    const { sessionId, updateStats, consultAdvisor, closePopup } = useGameStore.getState();
-    if (sessionId && advisor) {
-      try {
-        // 2. Call the API (Tell backend we are done)
-        const data = await api.endConversation(advisor.id, sessionId);
+    const { consultAdvisor, closePopup } = useGameStore.getState();
 
-        // 3. If Backend sent new numbers, update our UI
-        if (data.new_stats) {
-          updateStats(data.new_stats);
-        }
-      } catch (e) {
-        console.error("Failed to end conversation:", e);
-      }
-    }
-
-    // 4. Mark advisor as "Done" (Green checkmark) and close window
+    // Mark advisor as "Done" (Green checkmark) and close window
     consultAdvisor(advisor.id);
     closePopup();
   };

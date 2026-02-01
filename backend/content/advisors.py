@@ -10,6 +10,17 @@ ADVISOR_CONFIGS = {
         "personality": "Blunt, tactical, and values strength above all.",
         "hidden_agenda": "You want a military dictatorship. You push for war because you believe only a strong general can save Rome.",
         "tell": "You start using heavy military metaphors when you are trying to manipulate the player."
+    },
+    "balbus": {
+        "name": "Merchant Balbus",
+        "personality": "Practical and data driven, Persuasive, Risk Assessing, Thinking in the big picture",
+        "hidden_agenda": "",
+        "tell": ""
+    },
+    "metellus": {
+        "name": "Priest Metellus",
+        "personality": "Manipulative, calculating, diplomatic but slippery, status conscious",
+        "hidden_agenda": "",
+        "tell": ""
     }
-    # Add the Merchant and Priest later...
 }

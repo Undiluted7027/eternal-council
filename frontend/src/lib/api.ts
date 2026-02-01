@@ -37,12 +37,10 @@ export const api = {
         return res.json(); // Expected: { response: "...", message_count: X }
     },
 
-    async endConversation(advisorId: string, sessionId: string) {
-        const res = await fetch(`${API_BASE}/advisor/${advisorId}/end?session_id=${sessionId}`, {
-            method: 'POST'
-        });
-        if (!res.ok) throw new Error('Failed to end conversation');
-        return res.json(); // Expected: { new_stats: {...} }
+    async getGame(sessionId: string) {
+        const res = await fetch(`${API_BASE}/game/${sessionId}`);
+        if (!res.ok) throw new Error('Failed to fetch game state');
+        return res.json();
     },
 
     async getResults(sessionId: string) {

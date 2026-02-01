@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { type Stats, type GameScreen, type EraData } from '../types';
+import { type Stats, type GameScreen, type EraData, type ChatMessage } from '../types';
 import { api } from '../lib/api';
 
 interface GameState {
@@ -8,6 +8,7 @@ interface GameState {
     currentScreen: GameScreen;
     currentEra: number;
     stats: Stats;
+    chats: Record<string, ChatMessage[]>;
 
     // Data
     eraData: EraData | null;
@@ -29,11 +30,13 @@ interface GameState {
     updateStats: (newStats: Stats) => void;
     makeDecision: (choiceId: string) => Promise<void>;
 
-    // updateStats: (newStats: Stats) => void;
     // UI Actions
     checkReadyForDecision: () => boolean;
     openPopup: (type: 'evidence' | 'advisor', id: string) => void;
     closePopup: () => void;
+
+    syncGame: () => Promise<void>;
+    addChatMessage: (advisorId: string, message: ChatMessage) => void;
 }
 
 // Mock initial stats for UI dev before backend is ready
@@ -46,7 +49,7 @@ const INITIAL_STATS: Stats = {
 
 export const useGameStore = create<GameState>((set, get) => ({
     sessionId: null,
-    currentScreen: 'RESULTS',
+    currentScreen: 'TITLE',
     currentEra: 1,
     stats: INITIAL_STATS,
     eraData: null,
@@ -56,6 +59,7 @@ export const useGameStore = create<GameState>((set, get) => ({
     advisorsConsulted: [],
     activePopup: null,
     activeItemId: null,
+    chats: {},
 
     setScreen: (screen) => set({ currentScreen: screen }),
     updateStats: (newStats) => set({ stats: newStats }),
@@ -66,7 +70,34 @@ export const useGameStore = create<GameState>((set, get) => ({
         set({ activePopup: null, activeItemId: null });
     },
 
-    // updateStats: (newStats) => set({ stats: newStats }),
+    // Helper to fetch latest state from backend (useful when opening popups)
+    syncGame: async () => {
+        const { sessionId } = get();
+        if (!sessionId) return;
+        try {
+            const data = await api.getGame(sessionId);
+            set({
+                stats: data.stats,
+                evidenceViewed: data.evidence_viewed,
+                chats: data.chats || {}, // Sync chats from server
+                currentEra: data.current_era
+            });
+        } catch (e) {
+            console.error("Sync failed", e);
+        }
+    },
+
+    // Optimistic update for UI speed
+    addChatMessage: (advisorId, message) => {
+        const { chats } = get();
+        const advisorChats = chats[advisorId] || [];
+        set({
+            chats: {
+                ...chats,
+                [advisorId]: [...advisorChats, message]
+            }
+        });
+    },
 
     startGame: async () => {
         set({ isLoading: true, error: null });
@@ -109,8 +140,8 @@ export const useGameStore = create<GameState>((set, get) => ({
         }
     },
 
-    viewEvidence: async(id) => {
-        const { sessionId, evidenceViewed, openPopup, stats } = get();
+    viewEvidence: async (id) => {
+        const { sessionId, evidenceViewed, openPopup, syncGame } = get();
 
         // Open the UI
         openPopup('evidence', id);
@@ -121,25 +152,28 @@ export const useGameStore = create<GameState>((set, get) => ({
         if (!sessionId) return;
 
         try {
-            // Call API to register view and get stat updates
-            // The API response structure wasn't fully detailed in the snippet 
-            // but usually returns the new game state.
-            const response = await api.viewEvidence(id, sessionId);
+            // Call API to register view (updates stats on backend)
+            await api.viewEvidence(id, sessionId);
 
-            set({
-                evidenceViewed: [...evidenceViewed, id],
-                stats: response.new_stats || stats // Assuming API returns new_stats
-            });
+            // Mark as viewed locally
+            set({ evidenceViewed: [...evidenceViewed, id] });
+
+            // Sync to get updated stats from backend
+            await syncGame();
         } catch (err) {
             console.error("Failed to record evidence view", err);
         }
     },
 
     consultAdvisor: (id) => {
-        const { advisorsConsulted, openPopup } = get();
+        const { advisorsConsulted, openPopup, syncGame } = get();
+        openPopup('advisor', id);
+
+        // Fetch latest chat history to be safe
+        syncGame();
+
         if (!advisorsConsulted.includes(id)) {
             set({ advisorsConsulted: [...advisorsConsulted, id] });
-            openPopup('advisor', id);
         }
     },
 

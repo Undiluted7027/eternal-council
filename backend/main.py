@@ -3,6 +3,10 @@ from fastapi.middleware.cors import CORSMiddleware
 import uuid
 from typing import Dict
 from content.era1 import ERA_1_DATA
+from content.era2 import ERA_2_DATA
+from content.era3 import ERA_3_DATA
+from content.era4 import ERA_4_DATA
+from content.era5 import ERA_5_DATA
 from models.game import GameSession, Stats
 from ai.advisor_logic import get_advisor_response
 
@@ -23,7 +27,10 @@ def update_stats(current_stats, impact_dict):
 
 ALL_ERAS = {
     1: ERA_1_DATA,
-    # 2: ERA_2_DATA, 
+    2: ERA_2_DATA,
+    3: ERA_3_DATA,
+    4: ERA_4_DATA,
+    5: ERA_5_DATA, 
 }
 
 app = FastAPI()
@@ -92,6 +99,14 @@ async def view_evidence(evidence_id: str, session_id: str):
         "evidence_content": evidence_item["content"],
         "evidence_insight": evidence_item["insight"]
     }
+
+@app.get("/game/{session_id}/stats", response_model=Stats)
+async def get_stats(session_id: str):
+    """Returns only the stats for a specific session"""
+    if session_id not in sessions:
+        raise HTTPException(status_code=404, detail="Session not found")
+    
+    return sessions[session_id].stats
 
 @app.post("/game/decision")
 async def make_decision(session_id: str, choice_id: str):
