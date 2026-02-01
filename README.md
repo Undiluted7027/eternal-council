@@ -1,3 +1,4 @@
+*Submitted as part of [XHacks 2026](https://devpost.com/software/divergence-5gw6j0)*
 ## Inspiration                                                                         
                                                                                          
   We were fascinated by a simple question: *What if history had gone differently?*       
