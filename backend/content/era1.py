@@ -118,7 +118,7 @@ Burn this letter. - M""",
         {
             "id": "2",
             "title": "NEGOTIATE",
-            "description": "Accept the compromise. Grant veterans their land. Preserve peace.",
+            "description": "Accept the compromise. Grant veterans their land. Preserve peace in the land.",
             "supporters": ["labienus", "balbus"],
             "image": "/assets/choices/era1_negotiate.png",
             "stat_impact": {"military": -10, "economy": 15, "stability": 20, "republic": -10},
