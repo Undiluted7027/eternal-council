@@ -3,6 +3,7 @@ import { StatsPanel } from './components/game/StatsPanel';
 import { SceneScreen } from './screens/SceneScreen';
 import { DecisionScreen } from './screens/DecisionScreen';
 import { DivergenceScreen } from './screens/DivergenceScreen';
+import { ResultsScreen } from './screens/ResultsScreen';
 
 // Placeholder Screens (You will flesh these out next)
 const TitleScreen = () => {
@@ -53,6 +54,7 @@ function App() {
       {currentScreen === 'SCENE' && <SceneScreen />}
       {currentScreen === 'DECISION' && <DecisionScreen />}
       {currentScreen === 'DIVERGENCE' && <DivergenceScreen />}
+      {currentScreen === 'RESULTS' && <ResultsScreen />}
     </div>
   );
 }

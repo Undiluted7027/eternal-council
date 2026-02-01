@@ -26,6 +26,7 @@ interface GameState {
     loadEra: (eraId: number) => Promise<void>;
     viewEvidence: (id: string) => void;
     consultAdvisor: (id: string) => void; // Still local/simulated for now
+    updateStats: (newStats: Stats) => void;
     makeDecision: (choiceId: string) => Promise<void>;
 
     // updateStats: (newStats: Stats) => void;
@@ -45,7 +46,7 @@ const INITIAL_STATS: Stats = {
 
 export const useGameStore = create<GameState>((set, get) => ({
     sessionId: null,
-    currentScreen: 'TITLE',
+    currentScreen: 'RESULTS',
     currentEra: 1,
     stats: INITIAL_STATS,
     eraData: null,
@@ -57,6 +58,7 @@ export const useGameStore = create<GameState>((set, get) => ({
     activeItemId: null,
 
     setScreen: (screen) => set({ currentScreen: screen }),
+    updateStats: (newStats) => set({ stats: newStats }),
     openPopup: (type, id) => {
         set({ activePopup: type, activeItemId: id });
     },
