@@ -20,12 +20,14 @@ export const SceneScreen = () => {
 
     const [hoveredItem, setHoveredItem] = useState<string | null>(null);
 
+    const currentEra = useGameStore(s => s.currentEra);
+
     useEffect(() => {
-        // Load data on mount if missing
-        if (!eraData) {
-            loadEra(1);
+        // Load data on mount if missing or stale
+        if (!eraData || eraData.id !== currentEra) {
+            loadEra(currentEra);
         }
-    }, []);
+    }, [currentEra, eraData, loadEra]);
 
     if (!eraData) return <div className="h-screen flex items-center justify-center text-white">Loading Rome...</div>;
 

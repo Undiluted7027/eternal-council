@@ -2,19 +2,16 @@ import { useGameStore } from '../store/gameStore';
 import { motion } from 'framer-motion';
 
 export const DivergenceScreen = () => {
-  const { currentEra, loadEra, setScreen } = useGameStore();
+  const { currentEra, setScreen, divergenceText } = useGameStore();
 
   const handleContinue = () => {
-    // Advance to next Era
-    const nextEra = currentEra + 1;
-    
+    // currentEra is already updated by makeDecision to the next era
     // Check if we exceeded max eras (Assuming 5 eras)
-    if (nextEra > 5) {
+    if (currentEra > 5) {
       setScreen('RESULTS');
     } else {
-      loadEra(nextEra).then(() => {
-        setScreen('ERA_INTRO');
-      });
+      // Navigate to EraIntro - it will handle loading the era data
+      setScreen('ERA_INTRO');
     }
   };
 
@@ -29,16 +26,15 @@ export const DivergenceScreen = () => {
         
         <div className="bg-black/50 border border-stone-800 p-8 rounded-lg mb-8">
             <p className="text-xl text-roman-parchment italic leading-relaxed">
-                "Your choice has echoed through time. The stats have shifted. History is being rewritten."
+                {divergenceText || "Your choice has echoed through time. The stats have shifted. History is being rewritten."}
             </p>
-            {/* Note: If the API returns a specific 'outcome_text', display it here */}
         </div>
 
         <button
           onClick={handleContinue}
           className="px-8 py-3 bg-roman-gold text-black font-serif text-xl hover:bg-yellow-500 transition-colors rounded shadow-lg"
         >
-          Proceed to {currentEra + 1 > 5 ? 'Final Results' : `Era ${currentEra + 1}`}
+          Proceed to {currentEra > 5 ? 'Final Results' : `Era ${currentEra}`}
         </button>
       </motion.div>
     </div>

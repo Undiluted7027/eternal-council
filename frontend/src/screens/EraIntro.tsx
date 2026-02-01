@@ -1,14 +1,52 @@
+import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useGameStore } from '../store/gameStore';
+import { StatsPanel } from '../components/game/StatsPanel';
+
+const toRomanNumeral = (num: number): string => {
+  const numerals: [number, string][] = [
+    [5, 'V'], [4, 'IV'], [1, 'I']
+  ];
+  let result = '';
+  for (const [value, symbol] of numerals) {
+    while (num >= value) {
+      result += symbol;
+      num -= value;
+    }
+  }
+  return result;
+};
 
 export const EraIntro = () => {
-  const setScreen = useGameStore(s => s.setScreen);
-  
+  const { setScreen, loadEra, currentEra, eraData, isLoading } = useGameStore();
+  useEffect(() => {
+    // Always load era data when this screen mounts or era changes
+    loadEra(currentEra);
+  }, [currentEra]);
+
+  // Show loading if: still loading, no data, or data is stale (wrong era)
+  if (isLoading || !eraData || eraData.id !== currentEra) {
+    return (
+      <div className="h-screen w-full flex items-center justify-center bg-stone-950">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="text-roman-gold font-serif text-2xl"
+        >
+          The Council gathers...
+        </motion.div>
+      </div>
+    );
+  }
+
   return (
     <div className="h-screen w-full flex items-center justify-center bg-stone-950 relative overflow-hidden">
       {/* Background Ambience */}
       <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-10"></div>
-      
+
+      {/* Stats Panel */}
+      <StatsPanel />
+
       <div className="max-w-3xl px-8 z-10 text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -16,13 +54,13 @@ export const EraIntro = () => {
           transition={{ duration: 0.8 }}
         >
           <div className="text-roman-red font-serif tracking-[0.3em] mb-4 text-sm uppercase">
-            Era I
+            Era {toRomanNumeral(eraData.id)}
           </div>
-          <h1 className="text-6xl md:text-8xl font-serif text-roman-gold mb-2 drop-shadow-lg">
-            THE RUBICON
+          <h1 className="text-6xl md:text-8xl font-serif text-roman-gold mb-2 drop-shadow-lg uppercase">
+            {eraData.title}
           </h1>
           <div className="text-2xl text-stone-500 font-serif italic mb-12">
-            49 BC
+            {eraData.year}
           </div>
         </motion.div>
 
@@ -30,15 +68,9 @@ export const EraIntro = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1, duration: 1 }}
-          className="text-lg md:text-xl text-roman-parchment leading-relaxed mb-12 border-t border-b border-stone-800 py-8"
+          className="text-lg md:text-xl text-roman-parchment leading-relaxed mb-12 border-t border-b border-stone-800 py-8 whitespace-pre-line"
         >
-          <p className="mb-4">
-            Caesar stands at the Rubicon with his XIII Legion. 
-            To cross is treason. To retreat is death.
-          </p>
-          <p className="text-stone-400">
-            The Council has gathered. They await your wisdom.
-          </p>
+          {eraData.intro_text}
         </motion.div>
 
         <motion.button

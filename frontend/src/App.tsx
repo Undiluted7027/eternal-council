@@ -4,37 +4,20 @@ import { SceneScreen } from './screens/SceneScreen';
 import { DecisionScreen } from './screens/DecisionScreen';
 import { DivergenceScreen } from './screens/DivergenceScreen';
 import { ResultsScreen } from './screens/ResultsScreen';
+import { EraIntro } from './screens/EraIntro';
 
-// Placeholder Screens (You will flesh these out next)
+// Placeholder TitleScreen (can be moved to screens/TitleScreen.tsx later)
 const TitleScreen = () => {
   const startGame = useGameStore(s => s.startGame);
   return (
     <div className="h-screen flex flex-col items-center justify-center bg-stone-900 text-roman-gold">
       <h1 className="text-6xl font-serif mb-8">THE ETERNAL COUNCIL</h1>
-      <button 
+      <button
         onClick={startGame}
         className="px-8 py-3 bg-roman-red text-white font-serif text-xl rounded border-2 border-roman-gold hover:bg-red-900 transition-colors"
       >
         Begin Journey
       </button>
-    </div>
-  );
-};
-
-const EraIntro = () => {
-  const setScreen = useGameStore(s => s.setScreen);
-  return (
-    <div className="h-screen flex items-center justify-center bg-black/90 text-white">
-      <div className="text-center max-w-2xl">
-        <h2 className="text-4xl font-serif text-roman-gold mb-4">ERA I: THE RUBICON</h2>
-        <p className="text-lg mb-8">49 BC. Caesar stands at the river...</p>
-        <button 
-          onClick={() => setScreen('SCENE')}
-          className="px-6 py-2 border border-white hover:bg-white hover:text-black transition-colors"
-        >
-          Enter the Forum
-        </button>
-      </div>
     </div>
   );
 };

@@ -14,6 +14,7 @@ interface GameState {
     eraData: EraData | null;
     isLoading: boolean;
     error: string | null;
+    divergenceText: string | null;
 
     // Interaction State
     evidenceViewed: string[]; // List of evidence IDs
@@ -55,6 +56,7 @@ export const useGameStore = create<GameState>((set, get) => ({
     eraData: null,
     isLoading: false,
     error: null,
+    divergenceText: null,
     evidenceViewed: [],
     advisorsConsulted: [],
     activePopup: null,
@@ -185,11 +187,16 @@ export const useGameStore = create<GameState>((set, get) => ({
         try {
             const result = await api.makeDecision(choiceId, sessionId);
 
-            // Update stats based on result
+            // Update stats and advance era based on result
             set({
                 stats: result.new_stats,
+                currentEra: result.next_era,
                 currentScreen: 'DIVERGENCE',
-                // We might want to store the result/outcome text here to display it
+                divergenceText: result.outcome_text || null,
+                // Reset interaction state for the new era
+                evidenceViewed: [],
+                advisorsConsulted: [],
+                eraData: null,
             });
 
             // Return result for the component to use (e.g. for outcome text)
