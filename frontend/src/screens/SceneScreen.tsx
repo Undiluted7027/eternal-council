@@ -46,16 +46,12 @@ export const SceneScreen = () => {
             </div>
 
             {/* 2. Header / HUD */}
-            <div className="absolute top-4 left-4 z-10">
+            <div className="absolute top-4 left-4 mt-2 gap-4 text-sm text-gray-300 bg-black/50 p-2 rounded backdrop-blur-sm border border-gray-700 z-10">
                 <h2 className="text-3xl font-serif text-roman-gold drop-shadow-md">
                     {eraData.title}
                 </h2>
                 <div className="text-roman-parchment font-serif text-lg opacity-80">
                     {eraData.year}
-                </div>
-                <div className="mt-2 flex gap-4 text-sm text-gray-300 bg-black/50 p-2 rounded backdrop-blur-sm border border-gray-700">
-                    <span>Evidence: <span className={evidenceViewed.length >= 3 ? "text-green-400" : "text-white"}>{evidenceViewed.length}/5</span></span>
-                    <span>Advisors: <span className={advisorsConsulted.length >= 1 ? "text-green-400" : "text-white"}>{advisorsConsulted.length}/4</span></span>
                 </div>
             </div>
 

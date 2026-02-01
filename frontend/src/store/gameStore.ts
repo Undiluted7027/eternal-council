@@ -211,8 +211,9 @@ export const useGameStore = create<GameState>((set, get) => ({
     },
 
     checkReadyForDecision: () => {
-        const { evidenceViewed, advisorsConsulted } = get();
-        // Rule: 3 Evidence + 1 Advisor (from guide)
-        return evidenceViewed.length >= 3 && advisorsConsulted.length >= 1;
+        // const { evidenceViewed, advisorsConsulted } = get();
+        // // Rule: 3 Evidence + 1 Advisor (from guide)
+        // return evidenceViewed.length >= 3 && advisorsConsulted.length >= 1;
+        return true;
     }
 }));
