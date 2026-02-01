@@ -115,6 +115,6 @@ The Senate recognizes Gordian as Emperor.""",
         }
     ],
     
-    "historical_choice": "A",
+    "historical_choice": "1",
     "historical_outcome": "Rome chose militarization. Diocletian eventually cemented this as the Dominate."
 }

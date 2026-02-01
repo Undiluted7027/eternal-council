@@ -113,6 +113,6 @@ To hang the Civic Crown of oak leaves above his door.""",
         }
     ],
     
-    "historical_choice": "A",
+    "historical_choice": "1",
     "historical_outcome": "Rome chose the Principate. Augustus became the first Emperor."
 }

@@ -160,6 +160,43 @@ async def chat_with_advisor(advisor_id: str, session_id: str, message: str):
         "response": ai_reply
     }
 
+@app.get("/results/{session_id}")
+async def get_results(session_id: str):
+    session = sessions.get(session_id)
+    if not session:
+        raise HTTPException(status_code=404, detail="Session not found")
+
+    # Calculate correlation (matches / 5 eras)
+    matches = sum(1 for era_id in range(1, 6)
+                  if session.choices.get(era_id) == ALL_ERAS.get(era_id, {}).get("historical_choice"))
+    correlation_score = int((matches / 5) * 100)
+
+    # Determine final state based on stats
+    stats = session.stats
+    survival_year = 476 + (stats.stability - 50) * 5
+    survival_year = max(300, min(1453, survival_year))
+
+    if stats.republic >= 60:
+        government = "Constitutional Republic"
+    elif stats.military >= 60:
+        government = "Military Dictatorship"
+    else:
+        government = "Principate"
+
+    legacy = "The Alternative Timeline"
+    if stats.stability >= 70:
+        legacy = "The Golden Age"
+    elif stats.military >= 70:
+        legacy = "The Iron Legions"
+
+    return {
+        "final_stats": {"military": stats.military, "economy": stats.economy,
+                       "stability": stats.stability, "republic": stats.republic},
+        "final_state": {"survival_year": f"{survival_year} AD",
+                       "government": government, "legacy": legacy},
+        "correlation_score": correlation_score
+    }
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True)
