@@ -1,35 +1,45 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useGameStore } from './store/gameStore';
+import { StatsPanel } from './components/game/StatsPanel';
+import { SceneScreen } from './screens/SceneScreen';
+import { DecisionScreen } from './screens/DecisionScreen';
+import { DivergenceScreen } from './screens/DivergenceScreen';
+import { ResultsScreen } from './screens/ResultsScreen';
+import { EraIntro } from './screens/EraIntro';
+
+// Placeholder TitleScreen (can be moved to screens/TitleScreen.tsx later)
+const TitleScreen = () => {
+  const startGame = useGameStore(s => s.startGame);
+  return (
+    <div className="h-screen flex flex-col items-center justify-center bg-stone-900 text-roman-gold">
+      <h1 className="text-6xl font-serif mb-8">THE ETERNAL COUNCIL</h1>
+      <button
+        onClick={startGame}
+        className="px-8 py-3 bg-roman-red text-white font-serif text-xl rounded border-2 border-roman-gold hover:bg-red-900 transition-colors"
+      >
+        Begin Journey
+      </button>
+    </div>
+  );
+};
+
 
 function App() {
-  const [count, setCount] = useState(0)
+  const currentScreen = useGameStore((state) => state.currentScreen);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className="relative w-full h-screen overflow-hidden bg-stone-950 font-sans select-none">
+      {/* Persistent UI */}
+      {currentScreen !== 'TITLE' && <StatsPanel />}
+
+      {/* Screen Router */}
+      {currentScreen === 'TITLE' && <TitleScreen />}
+      {currentScreen === 'ERA_INTRO' && <EraIntro />}
+      {currentScreen === 'SCENE' && <SceneScreen />}
+      {currentScreen === 'DECISION' && <DecisionScreen />}
+      {currentScreen === 'DIVERGENCE' && <DivergenceScreen />}
+      {currentScreen === 'RESULTS' && <ResultsScreen />}
+    </div>
+  );
 }
 
-export default App
+export default App;
