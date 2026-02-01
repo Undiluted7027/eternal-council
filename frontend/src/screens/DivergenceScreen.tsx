@@ -12,13 +12,26 @@ export const DivergenceScreen = () => {
     { key: 'republic', label: 'Republic', icon: Building2, color: 'text-purple-400' },
   ] as const;
 
+  // Helper logic to calculate change based on absolute values
+  const getChangeIndicator = (oldVal: number, newVal: number) => {
+    const diff = newVal - oldVal;
+
+    // Check for high impact changes (15 or more)
+    if (diff >= 15) return { symbol: '++', color: 'text-green-500' };
+    if (diff <= -15) return { symbol: '--', color: 'text-red-500' };
+
+    // Check for medium impact changes (5 or more)
+    if (diff >= 5)  return { symbol: '+',  color: 'text-green-400' };
+    if (diff <= -5)  return { symbol: '-',  color: 'text-red-400' };
+    
+    // Low impact or no change
+    return { symbol: '—', color: 'text-stone-600' };
+  };
+
   const handleContinue = () => {
-    // currentEra is already updated by makeDecision to the next era
-    // Check if we exceeded max eras (Assuming 5 eras)
     if (currentEra > 5) {
       setScreen('RESULTS');
     } else {
-      // Navigate to EraIntro - it will handle loading the era data
       setScreen('ERA_INTRO');
     }
   };
@@ -28,44 +41,42 @@ export const DivergenceScreen = () => {
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="max-w-2xl"
+        className="max-w-2xl w-full"
       >
-        <h2 className="text-5xl font-serif text-roman-red mb-8">THE TIMELINE DIVERGES</h2>
+        <h2 className="text-4xl md:text-5xl font-serif text-roman-red mb-8">THE TIMELINE DIVERGES</h2>
         
         <div className="bg-black/50 border border-stone-800 p-8 rounded-lg mb-8">
-            <p className="text-xl text-roman-parchment italic leading-relaxed">
+            <p className="text-lg md:text-xl text-roman-parchment italic leading-relaxed">
                 {divergenceText || "Your choice has echoed through time. The stats have shifted. History is being rewritten."}
             </p>
         </div>
 
         {/* Stat Changes Panel */}
         {oldStats && (
-          <div className="grid grid-cols-4 gap-4 mb-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
             {statConfig.map(({ key, label, icon: Icon, color }) => {
               const oldVal = oldStats[key];
               const newVal = stats[key];
-              const change = newVal - oldVal;
+              
+              const { symbol, color: indicatorColor } = getChangeIndicator(oldVal, newVal);
+
               return (
                 <motion.div
                   key={key}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2 }}
-                  className="bg-black/40 p-4 rounded-lg border border-stone-800"
+                  className="bg-black/40 p-4 rounded-lg border border-stone-800 flex flex-col items-center justify-center min-h-[110px]"
                 >
-                  <div className={`flex items-center justify-center gap-1 mb-2 ${color}`}>
-                    <Icon size={16} />
-                    <span className="text-xs uppercase tracking-wider">{label}</span>
+                  {/* Label and Icon */}
+                  <div className={`flex items-center justify-center gap-2 mb-2 ${color}`}>
+                    <Icon size={20} />
+                    <span className="text-sm md:text-base uppercase tracking-wider font-bold">{label}</span>
                   </div>
-                  <div className="flex items-center justify-center gap-2 text-lg">
-                    <span className="text-stone-500">{oldVal}</span>
-                    <span className="text-stone-600">→</span>
-                    <span className={change > 0 ? "text-green-400" : change < 0 ? "text-red-400" : "text-stone-400"}>
-                      {newVal}
-                    </span>
-                  </div>
-                  <div className={`text-center text-sm font-bold ${change > 0 ? "text-green-500" : change < 0 ? "text-red-500" : "text-stone-600"}`}>
-                    {change > 0 ? `+${change}` : change === 0 ? '—' : change}
+
+                  {/* The Abstract Symbol Display (++ / --) */}
+                  <div className={`text-3xl md:text-4xl font-serif font-bold ${indicatorColor}`}>
+                    {symbol}
                   </div>
                 </motion.div>
               );

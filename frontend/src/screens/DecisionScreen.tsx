@@ -52,7 +52,7 @@ export const DecisionScreen = () => {
                 {/* Assuming choice has stat_impact object */}
                 {choice.stat_impact && Object.entries(choice.stat_impact).map(([stat, val]: any) => (
                   <span key={stat} className={val > 0 ? "text-green-500" : "text-red-500"}>
-                    {stat.charAt(0).toUpperCase() + stat.slice(1)} {val > 0 ? '++' : '--'}
+                    {stat.charAt(0).toUpperCase() + stat.slice(1)} {val > 0 ? '+' : '-'}
                   </span>
                 ))}
               </div>
