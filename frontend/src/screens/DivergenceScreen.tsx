@@ -25,7 +25,7 @@ export const DivergenceScreen = () => {
     if (diff <= -5)  return { symbol: '-',  color: 'text-red-400' };
     
     // Low impact or no change
-    return { symbol: '—', color: 'text-stone-600' };
+    return { symbol: '=', color: 'text-stone-400' };
   };
 
   const handleContinue = () => {
