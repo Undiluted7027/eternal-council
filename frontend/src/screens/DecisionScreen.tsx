@@ -15,8 +15,8 @@ export const DecisionScreen = () => {
     <div className="h-screen w-full bg-stone-900 flex flex-col items-center justify-center p-8 relative overflow-hidden">
       {/* Dramatic Background */}
       <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5"></div>
-      
-      <motion.div 
+
+      <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         className="text-center mb-12 z-10"
@@ -37,28 +37,42 @@ export const DecisionScreen = () => {
           >
             {/* Hover Glow */}
             <div className="absolute inset-0 bg-roman-gold opacity-0 group-hover:opacity-5 transition-opacity"></div>
-            
+
             <h3 className="text-2xl font-serif text-roman-parchment group-hover:text-roman-gold mb-4 transition-colors">
               {choice.title}
             </h3>
-            
+
             <p className="text-stone-300 leading-relaxed mb-6 h-24">
               {choice.description}
             </p>
 
             <div className="border-t border-stone-700 pt-4">
-               <div className="text-xs uppercase text-stone-500 mb-2 font-bold tracking-widest">Expected Impact</div>
-               <div className="flex gap-4 text-sm">
-                 {/* Assuming choice has stat_impact object */}
-                 {choice.stat_impact && Object.entries(choice.stat_impact).map(([stat, val]: any) => (
-                   <span key={stat} className={val > 0 ? "text-green-500" : "text-red-500"}>
-                     {stat.charAt(0).toUpperCase() + stat.slice(1)} {val > 0 ? '++' : '--'}
-                   </span>
-                 ))}
-               </div>
+              <div className="text-xs uppercase text-stone-500 mb-2 font-bold tracking-widest">Expected Impact</div>
+              <div className="flex gap-4 text-sm">
+                {/* Assuming choice has stat_impact object */}
+                {choice.stat_impact && Object.entries(choice.stat_impact).map(([stat, val]: any) => (
+                  <span key={stat} className={val > 0 ? "text-green-500" : "text-red-500"}>
+                    {stat.charAt(0).toUpperCase() + stat.slice(1)} {val > 0 ? '++' : '--'}
+                  </span>
+                ))}
+              </div>
             </div>
 
-            <button 
+            <div className="border-t border-stone-700 pt-4 mt-4">
+              <div className="text-xs uppercase text-stone-500 mb-2">Supported By</div>
+              <div className="flex gap-2 flex-wrap">
+                {choice.supporters?.map((id: string) => {
+                  const advisor = eraData.advisors?.find((a: any) => a.id === id);
+                  return advisor ? (
+                    <span key={id} className="px-2 py-1 bg-stone-800 rounded text-stone-300 text-xs">
+                      {advisor.name}
+                    </span>
+                  ) : null;
+                })}
+              </div>
+            </div>
+
+            <button
               disabled={isLoading}
               className="w-full mt-8 py-3 border border-stone-500 text-stone-400 group-hover:bg-roman-gold group-hover:text-black group-hover:border-roman-gold transition-all uppercase tracking-widest text-sm font-bold"
             >

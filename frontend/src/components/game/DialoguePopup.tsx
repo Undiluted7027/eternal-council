@@ -93,6 +93,9 @@ export const DialoguePopup = () => {
               End Audience
             </button>
           </div>
+          <div className="mt-2 text-xs text-stone-500">
+            Messages: {(chats[advisor.id] || []).length}
+          </div>
         </div>
 
         {/* Right: Chat Interface */}

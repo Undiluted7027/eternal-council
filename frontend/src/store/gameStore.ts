@@ -8,6 +8,7 @@ interface GameState {
     currentScreen: GameScreen;
     currentEra: number;
     stats: Stats;
+    oldStats: Stats | null;
     chats: Record<string, ChatMessage[]>;
 
     // Data
@@ -62,6 +63,7 @@ export const useGameStore = create<GameState>((set, get) => ({
     activePopup: null,
     activeItemId: null,
     chats: {},
+    oldStats: null,
 
     setScreen: (screen) => set({ currentScreen: screen }),
     updateStats: (newStats) => set({ stats: newStats }),
@@ -183,7 +185,7 @@ export const useGameStore = create<GameState>((set, get) => ({
         const { sessionId } = get();
         if (!sessionId) return;
 
-        set({ isLoading: true });
+        set({ isLoading: true, oldStats: get().stats });
         try {
             const result = await api.makeDecision(choiceId, sessionId);
 

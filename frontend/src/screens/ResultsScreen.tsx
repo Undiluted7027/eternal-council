@@ -15,21 +15,13 @@ interface ResultsData {
 
 export const ResultsScreen = () => {
   const { sessionId, startGame } = useGameStore();
-    const [results, setResults] = useState<ResultsData | null>({
-    final_stats: { military: 80, economy: 20, stability: 30, republic: 10 },
-    final_state: {
-        survival_year: "823 AD",
-        government: "Military Dictatorship",
-        legacy: "The Iron Republic"
-    },
-    correlation_score: 37
-  });
+    const [results, setResults] = useState<ResultsData | null>(null);
 
-//   useEffect(() => {
-//     if (sessionId) {
-//       api.getResults(sessionId).then(setResults).catch(console.error);
-//     }
-//   }, [sessionId]);
+  useEffect(() => {
+    if (sessionId) {
+      api.getResults(sessionId).then(setResults).catch(console.error);
+    }
+  }, [sessionId]);
 
   if (!results) return <div className="text-white text-center mt-20">Calculating the fate of Rome...</div>;
 
