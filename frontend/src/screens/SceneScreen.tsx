@@ -66,7 +66,18 @@ export const SceneScreen = () => {
                         key={advisor.id || index}
                         initial={{ opacity: 0, scale: 0.8 }}
                         animate={{ opacity: 1, scale: 1 }}
-                        whileHover={{ scale: 1.1 }}
+                        whileHover={{ 
+                            scale: 1.1,
+                            y: [0, -15, 0] // Keyframes: starts at 0, moves up 15px, back to 0
+                        }}
+                        transition={{
+                            y: {
+                                repeat: Infinity,    // Makes it loop
+                                duration: 0.6,       // Speed of one bounce
+                                ease: "easeInOut"
+                                },
+                            scale: { duration: 0.2 } // How fast it enlarges
+                        }}
                         className="absolute pointer-events-auto group"
                         style={{
                             left: `${advisor.position?.x}%`,
@@ -150,7 +161,7 @@ export const SceneScreen = () => {
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0 }}
-                            className="bg-black/60 text-white px-4 py-2 rounded-full backdrop-blur-md border border-white/20 mb-4"
+                            className="bg-black/60 text-white px-4 py-2 rounded-full backdrop-blur-md border border-white/20 mb-1"
                         >
                             Click to examine <strong>{hoveredItem}</strong>
                         </motion.div>
