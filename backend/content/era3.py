@@ -12,7 +12,7 @@ The Senate must decide: Accept his protection (and his rule), or demand true fre
         {
             "id": "era3_res_gestae",
             "title": "Draft Speech",
-            "position": {"x": 50, "y": 50},
+            "position": {"x": 43, "y": 68},
             "sprite": "/assets/evidence/scroll.png",
             "content": """DRAFT: "I transferred the Republic from my own power to the dominion of the Senate and People of Rome."
 NOTE IN MARGIN: Keep control of Egypt, Gaul, and Syria (where the legions are). Give the Senate peaceful provinces.""",
@@ -22,7 +22,7 @@ NOTE IN MARGIN: Keep control of Egypt, Gaul, and Syria (where the legions are). 
         {
             "id": "era3_proscription_list",
             "title": "Old Proscription List",
-            "position": {"x": 20, "y": 75},
+            "position": {"x": 52, "y": 73},
             "sprite": "/assets/evidence/tablet.png",
             "content": """A list of 'Enemies of the State' from 15 years ago.
 Hundreds of Senators named. Bloodstains obscure the bottom names.
@@ -33,7 +33,7 @@ Octavian signed this.""",
         {
             "id": "era3_agrippa_plans",
             "title": "Building Blueprints",
-            "position": {"x": 80, "y": 35},
+            "position": {"x": 49, "y": 68},
             "sprite": "/assets/evidence/letter.png",
             "content": """Plans for a new Pantheon and massive aqueduct repairs.
 Cost: 100 Million Sesterces (Personal donation from Octavian).""",
@@ -43,7 +43,7 @@ Cost: 100 Million Sesterces (Personal donation from Octavian).""",
         {
             "id": "era3_virgil_poem",
             "title": "Poetry Scroll",
-            "position": {"x": 35, "y": 60},
+            "position": {"x": 55, "y": 68},
             "sprite": "/assets/evidence/scroll.png",
             "content": """Lines from Virgil:
 "Roman, remember by your strength to rule the earth's peoples,
@@ -54,7 +54,7 @@ for your arts are to be these: To pacify, to impose the rule of law..." """,
         {
             "id": "era3_senate_decree",
             "title": "Proposed Decree",
-            "position": {"x": 65, "y": 25},
+            "position": {"x": 46, "y": 73},
             "sprite": "/assets/evidence/tablet.png",
             "content": """To confer upon Octavian the name 'AUGUSTUS' (The Revered One).
 To hang the Civic Crown of oak leaves above his door.""",
@@ -67,25 +67,25 @@ To hang the Civic Crown of oak leaves above his door.""",
         {
             "id": "agrippa",
             "name": "General Agrippa",
-            "position": {"x": 20, "y": 40},
+            "position": {"x": 18, "y": 64.5},
             "sprite": "/assets/advisors/agrippa_sprite.png"
         },
         {
             "id": "maecenas",
             "name": "Maecenas",
-            "position": {"x": 75, "y": 45},
+            "position": {"x": 75, "y": 53.5},
             "sprite": "/assets/advisors/maecenas_sprite.png"
         },
         {
             "id": "livia",
             "name": "Livia Drusilla",
-            "position": {"x": 45, "y": 30},
+            "position": {"x": 35, "y": 56.5},
             "sprite": "/assets/advisors/livia_sprite.png"
         },
         {
             "id": "varro",
             "name": "Senator Varro",
-            "position": {"x": 85, "y": 65},
+            "position": {"x": 85, "y": 67},
             "sprite": "/assets/advisors/varro_sprite.png"
         }
     ],
@@ -97,7 +97,7 @@ To hang the Civic Crown of oak leaves above his door.""",
             "description": "Grant him the title Augustus. Trade liberty for peace. End the century of civil war.",
             "supporters": ["agrippa", "maecenas", "livia"],
             "image": "/assets/choices/era3_principate.png",
-            "stat_impact": {"stability": 25, "economy": 15, "republic": -25, "military": 5},
+            "stat_impact": {"military": 5, "economy": 15, "stability": 25, "republic": -25},
             "outcome_text": "The Republic dies with applause. The Pax Romana begins. One man rules all.",
             "outcome_scene": "era3_empire"
         },
@@ -107,7 +107,7 @@ To hang the Civic Crown of oak leaves above his door.""",
             "description": "Call his bluff. Accept his resignation and demand he disband his legions. Risk war to save the Republic.",
             "supporters": ["varro"],
             "image": "/assets/choices/era3_republic.png",
-            "stat_impact": {"republic": 20, "stability": -30, "economy": -20, "military": -10},
+            "stat_impact": {"military": -10, "economy": -20, "stability": -30, "republic": 20},
             "outcome_text": "Octavian signals his legions. The Senate is purged. The mask falls, and a naked military tyranny begins.",
             "outcome_scene": "era3_purge"
         }

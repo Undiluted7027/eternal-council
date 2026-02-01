@@ -12,7 +12,7 @@ The Council has gathered. They await your wisdom.""",
         {
             "id": "era1_caesar_letter",
             "title": "Caesar's Letter",
-            "position": {"x": 49, "y": 70},  # % position in scene
+            "position": {"x": 43, "y": 68},  # % position in scene
             "sprite": "/assets/evidence/scroll.png",
             "content": """To the Conscript Fathers of the Senate:
 
@@ -27,7 +27,7 @@ If this is refused, let history record who chose war.
         {
             "id": "era1_treasury_records",
             "title": "Treasury Records",
-            "position": {"x": 52, "y": 76},
+            "position": {"x": 52, "y": 74},
             "sprite": "/assets/evidence/tablet.png",
             "content": """SENATE TREASURY - DISBURSEMENTS 50 BC
 Border Security (Hispania): 50,000 denarii
@@ -38,7 +38,7 @@ Recipient: [CLASSIFIED - Senate Eyes Only]""",
         {
             "id": "era1_merchant_complaint",
             "title": "Merchant Complaint",
-            "position": {"x": 55, "y": 70},
+            "position": {"x": 55, "y": 68},
             "sprite": "/assets/evidence/scroll.png",
             "content": """To the Aediles:
 The Guild protests trade disruptions from 'military exercises.'
@@ -49,7 +49,7 @@ Both sides position for war while claiming peace.""",
         {
             "id": "era1_augury_report",
             "title": "Augury Report",
-            "position": {"x": 46, "y": 76},
+            "position": {"x": 46, "y": 74},
             "sprite": "/assets/evidence/vase.png",
             "content": """COLLEGIUM OF AUGURS - OFFICIAL REPORT
 The sacred chickens have been consulted.
@@ -61,7 +61,7 @@ Signed: Metellus Pius, Pontifex""",
         {
             "id": "era1_metellus_private",
             "title": "Private Letter",
-            "position": {"x": 43, "y": 70},
+            "position": {"x": 49, "y": 68},
             "sprite": "/assets/evidence/letter.png",
             "content": """Brother,
 The augury is done. The chickens ate poorly but I recorded that they did not eat at all.
@@ -83,7 +83,7 @@ Burn this letter. - M""",
         {
             "id": "labienus",
             "name": "General Labienus",
-            "position": {"x": 17, "y": 66},
+            "position": {"x": 18, "y": 65},
             "sprite": "/assets/advisors/labienus_sprite.png"
         },
         {
