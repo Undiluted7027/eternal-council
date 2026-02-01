@@ -68,25 +68,29 @@ It matters not who wears the crown, so long as the Church is respected.""",
             "id": "orestes",
             "name": "Regent Orestes",
             "position": {"x": 30, "y": 53.5},
-            "sprite": "/assets/advisors/orestes_sprite.png"
+            "sprite": "/assets/advisors/orestes_sprite.png",
+            "faction": "senate"
         },
         {
             "id": "odoacer_envoy",
             "name": "Gothic Envoy",
             "position": {"x": 70, "y": 53},
-            "sprite": "/assets/advisors/envoy_sprite.png"
+            "sprite": "/assets/advisors/envoy_sprite.png",
+            "faction": "senate"
         },
         {
             "id": "bishop",
             "name": "Bishop of Ravenna",
             "position": {"x": 17, "y": 64.5},
-            "sprite": "/assets/advisors/bishop_sprite.png"
+            "sprite": "/assets/advisors/bishop_sprite.png",
+            "faction": "religious"
         },
         {
             "id": "sidonius",
             "name": "Sidonius (Noble)",
             "position": {"x": 87, "y": 60.5},
-            "sprite": "/assets/advisors/sidonius_sprite.png"
+            "sprite": "/assets/advisors/sidonius_sprite.png",
+            "faction": "senate"
         }
     ],
     

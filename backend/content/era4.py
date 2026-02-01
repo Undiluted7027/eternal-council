@@ -70,25 +70,29 @@ The Senate recognizes Gordian as Emperor.""",
             "id": "maximinus",
             "name": "General Thrax",
             "position": {"x": 27, "y": 53.5},
-            "sprite": "/assets/advisors/thrax_sprite.png"
+            "sprite": "/assets/advisors/thrax_sprite.png",
+            "faction": "military"
         },
         {
             "id": "gordian",
             "name": "Senator Gordian",
             "position": {"x": 70, "y": 53},
-            "sprite": "/assets/advisors/gordian_sprite.png"
+            "sprite": "/assets/advisors/gordian_sprite.png",
+            "faction": "senate"
         },
         {
             "id": "timesitheus",
             "name": "Prefect Timesitheus",
             "position": {"x": 57, "y": 57},
-            "sprite": "/assets/advisors/timesitheus_sprite.png"
+            "sprite": "/assets/advisors/timesitheus_sprite.png",
+            "faction": "military"
         },
         {
             "id": "merchant_guild",
             "name": "Guildmaster",
             "position": {"x": 86, "y": 68},
-            "sprite": "/assets/advisors/merchant_sprite.png"
+            "sprite": "/assets/advisors/merchant_sprite.png",
+            "faction": "merchant"
         }
     ],
     

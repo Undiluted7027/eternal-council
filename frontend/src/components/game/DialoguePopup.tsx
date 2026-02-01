@@ -17,7 +17,7 @@ export const DialoguePopup = () => {
   const history = advisor ? [
     {
       role: 'assistant',
-      content: `Greetings, Oracle. I am ${advisor.name}. How can the ${advisor.faction} faction assist you today?`
+      content: `Greetings, Oracle. I am ${advisor.name}. What can I tell you to help you?`
     } as ChatMessage,
     ...(chats[advisor.id] || [])
   ] : [];
@@ -81,7 +81,14 @@ export const DialoguePopup = () => {
           <div className="bg-stone-900 p-4 rounded border border-stone-800 w-full text-left">
             <h4 className="text-xs uppercase text-roman-red font-bold mb-2">Faction: {advisor.faction}</h4>
             <p className="text-xs text-stone-500 leading-relaxed">
-              Influences: {advisor.faction === 'Senate' ? 'Republic' : advisor.faction === 'Military' ? 'Strength' : 'Economy'}
+              Influences: {
+                advisor.faction === 'senate' ? 'Republic' :
+                advisor.faction === 'military' ? 'Military' :
+                advisor.faction === 'merchant' ? 'Economy' :
+                advisor.faction === 'family' ? 'Stability' :
+                advisor.faction === 'religious' ? 'Stability' :
+                'Unknown'
+              }
             </p>
           </div>
 

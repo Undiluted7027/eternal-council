@@ -65,7 +65,7 @@ export const EraIntro = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.5, duration: 0.8 }}
         >
-          <div className="text-roman-red font-serif tracking-[0.3em] mb-4 text-sm uppercase font-bold">
+          <div className="text-roman-red font-serif tracking-[0.3em] mb-4 text-2xl uppercase font-bold">
             Era {toRomanNumeral(eraData.id)}
           </div>
           <h1 className="text-6xl md:text-8xl font-serif text-roman-gold mb-2 drop-shadow-lg uppercase">

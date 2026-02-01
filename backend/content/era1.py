@@ -78,25 +78,29 @@ Burn this letter. - M""",
             "id": "caelius",
             "name": "Senator Caelius",
             "position": {"x": 30, "y": 53},
-            "sprite": "/assets/advisors/caelius_sprite.png"
+            "sprite": "/assets/advisors/caelius_sprite.png",
+            "faction": "senate",
         },
         {
             "id": "labienus",
             "name": "General Labienus",
             "position": {"x": 18, "y": 65},
-            "sprite": "/assets/advisors/labienus_sprite.png"
+            "sprite": "/assets/advisors/labienus_sprite.png",
+            "faction": "military"
         },
         {
             "id": "balbus",
             "name": "Merchant Balbus",
             "position": {"x": 60, "y": 58.5},
-            "sprite": "/assets/advisors/balbus_sprite.png"
+            "sprite": "/assets/advisors/balbus_sprite.png",
+            "faction": "merchant",
         },
         {
             "id": "metellus",
             "name": "Priest Metellus",
             "position": {"x": 78, "y": 54},
-            "sprite": "/assets/advisors/metellus_sprite.png"
+            "sprite": "/assets/advisors/metellus_sprite.png",
+            "faction": "religious"
         }
     ],
     

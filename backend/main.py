@@ -198,6 +198,56 @@ async def get_results(session_id: str):
         "correlation_score": correlation_score
     }
 
+
+@app.get("/timeline/{session_id}")
+async def get_timeline(session_id: str):
+    session = sessions.get(session_id)
+    if not session:
+        raise HTTPException(status_code=404, detail="Session not found")
+
+    eras = []
+    matches = 0
+
+    for era_id in range(1, 6):
+        era_data = ALL_ERAS.get(era_id)
+        if not era_data:
+            continue
+
+        player_choice_id = session.choices.get(era_id)
+        historical_choice_id = era_data.get("historical_choice")
+
+        # Find the choice objects
+        player_choice = next((c for c in era_data["choices"] if c["id"] == player_choice_id), None)
+        historical_choice = next((c for c in era_data["choices"] if c["id"] == historical_choice_id), None)
+
+        aligned = player_choice_id == historical_choice_id
+        if aligned:
+            matches += 1
+
+        era_info = {
+            "era_id": era_id,
+            "title": era_data["title"],
+            "year": era_data["year"],
+            "player_choice_id": player_choice_id or "",
+            "player_choice_title": player_choice["title"] if player_choice else "No choice made",
+            "player_choice_image": player_choice.get("image", "") if player_choice else "",
+            "player_outcome_text": player_choice["outcome_text"] if player_choice else "",
+            "historical_choice_id": historical_choice_id or "",
+            "historical_choice_title": historical_choice["title"] if historical_choice else "",
+            "historical_choice_image": historical_choice.get("image", "") if historical_choice else "",
+            "historical_outcome_text": era_data.get("historical_outcome", ""),
+            "aligned_with_history": aligned,
+            "stat_impact": player_choice["stat_impact"] if player_choice else {}
+        }
+        eras.append(era_info)
+
+    correlation_score = int((matches / 5) * 100)
+
+    return {
+        "eras": eras,
+        "correlation_score": correlation_score
+    }
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True)

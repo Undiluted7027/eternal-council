@@ -73,3 +73,24 @@ export interface GameSession {
   choices: Record<string, string>;
   chats: Record<string, ChatMessage[]>;
 }
+
+export interface TimelineEra {
+  era_id: number;
+  title: string;
+  year: string;
+  player_choice_id: string;
+  player_choice_title: string;
+  player_choice_image: string;
+  player_outcome_text: string;
+  historical_choice_id: string;
+  historical_choice_title: string;
+  historical_choice_image: string;
+  historical_outcome_text: string;
+  aligned_with_history: boolean;
+  stat_impact: Partial<Stats>;
+}
+
+export interface TimelineData {
+  eras: TimelineEra[];
+  correlation_score: number;
+}

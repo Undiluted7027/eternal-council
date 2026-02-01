@@ -4,6 +4,7 @@ import { SceneScreen } from './screens/SceneScreen';
 import { DecisionScreen } from './screens/DecisionScreen';
 import { DivergenceScreen } from './screens/DivergenceScreen';
 import { ResultsScreen } from './screens/ResultsScreen';
+import { TimelineScreen } from './screens/TimelineScreen';
 import { EraIntro } from './screens/EraIntro';
 
 // Placeholder TitleScreen (can be moved to screens/TitleScreen.tsx later)
@@ -29,7 +30,7 @@ function App() {
   return (
     <div className="relative w-full h-screen overflow-hidden bg-stone-950 font-sans select-none">
       {/* Persistent UI */}
-      {currentScreen !== 'TITLE' && currentScreen !== 'DIVERGENCE' && currentScreen !== 'ERA_INTRO' && <StatsPanel />}
+      {currentScreen !== 'TITLE' && currentScreen !== 'DIVERGENCE' && currentScreen !== 'ERA_INTRO' && currentScreen !== 'TIMELINE' && <StatsPanel />}
 
       {/* Screen Router */}
       {currentScreen === 'TITLE' && <TitleScreen />}
@@ -38,6 +39,7 @@ function App() {
       {currentScreen === 'DECISION' && <DecisionScreen />}
       {currentScreen === 'DIVERGENCE' && <DivergenceScreen />}
       {currentScreen === 'RESULTS' && <ResultsScreen />}
+      {currentScreen === 'TIMELINE' && <TimelineScreen />}
     </div>
   );
 }

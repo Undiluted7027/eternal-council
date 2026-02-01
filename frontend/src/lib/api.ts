@@ -47,5 +47,11 @@ export const api = {
         const res = await fetch(`${API_BASE}/results/${sessionId}`);
         if (!res.ok) throw new Error('Failed to get results');
         return res.json();
+    },
+
+    async getTimeline(sessionId: string) {
+        const res = await fetch(`${API_BASE}/timeline/${sessionId}`);
+        if (!res.ok) throw new Error('Failed to get timeline');
+        return res.json();
     }
 };

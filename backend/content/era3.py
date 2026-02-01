@@ -68,25 +68,29 @@ To hang the Civic Crown of oak leaves above his door.""",
             "id": "agrippa",
             "name": "General Agrippa",
             "position": {"x": 18, "y": 64.5},
-            "sprite": "/assets/advisors/agrippa_sprite.png"
+            "sprite": "/assets/advisors/agrippa_sprite.png",
+            "faction": "military"
         },
         {
             "id": "maecenas",
             "name": "Maecenas",
             "position": {"x": 75, "y": 53.5},
-            "sprite": "/assets/advisors/maecenas_sprite.png"
+            "sprite": "/assets/advisors/maecenas_sprite.png",
+            "faction": "family"
         },
         {
             "id": "livia",
             "name": "Livia Drusilla",
             "position": {"x": 35, "y": 56.5},
-            "sprite": "/assets/advisors/livia_sprite.png"
+            "sprite": "/assets/advisors/livia_sprite.png",
+            "faction": "senate"
         },
         {
             "id": "varro",
             "name": "Senator Varro",
             "position": {"x": 85, "y": 67},
-            "sprite": "/assets/advisors/varro_sprite.png"
+            "sprite": "/assets/advisors/varro_sprite.png",
+            "faction": "senate"
         }
     ],
     

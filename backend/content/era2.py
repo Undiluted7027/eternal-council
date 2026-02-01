@@ -73,25 +73,29 @@ Do not go to the Senate today. Even the priests say the omens are bad without a 
             "id": "brutus",
             "name": "Senator Brutus",
             "position": {"x": 30, "y": 67},
-            "sprite": "/assets/advisors/brutus_sprite.png"
+            "sprite": "/assets/advisors/brutus_sprite.png",
+            "faction": "senate",
         },
         {
             "id": "antony",
             "name": "Mark Antony",
             "position": {"x": 60, "y": 57},
-            "sprite": "/assets/advisors/antony_sprite.png"
+            "sprite": "/assets/advisors/antony_sprite.png",
+            "faction": "military"
         },
         {
             "id": "cassius",
             "name": "Senator Cassius",
             "position": {"x": 15, "y": 54},
-            "sprite": "/assets/advisors/cassius_sprite.png"
+            "sprite": "/assets/advisors/cassius_sprite.png",
+            "faction": "senate"
         },
         {
             "id": "calpurnia",
             "name": "Calpurnia",
             "position": {"x": 75, "y": 54},
-            "sprite": "/assets/advisors/calpurnia_sprite.png"
+            "sprite": "/assets/advisors/calpurnia_sprite.png",
+            "faction": "family"
         }
     ],
     

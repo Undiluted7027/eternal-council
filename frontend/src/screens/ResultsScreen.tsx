@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useGameStore } from '../store/gameStore';
 import { api } from '../lib/api';
 import { motion } from 'framer-motion';
+import { GitBranch } from 'lucide-react';
 
 interface ResultsData {
   final_stats: any;
@@ -14,7 +15,7 @@ interface ResultsData {
 }
 
 export const ResultsScreen = () => {
-  const { sessionId, startGame } = useGameStore();
+  const { sessionId, startGame, setScreen } = useGameStore();
     const [results, setResults] = useState<ResultsData | null>(null);
 
   useEffect(() => {
@@ -73,7 +74,14 @@ export const ResultsScreen = () => {
         </div>
 
         <div className="flex justify-center gap-6">
-            <button 
+            <button
+                onClick={() => setScreen('TIMELINE')}
+                className="px-8 py-3 bg-blue-600 text-white font-serif text-lg hover:bg-blue-700 transition-colors flex items-center gap-2"
+            >
+                <GitBranch size={20} />
+                VIEW HISTORY'S PATH
+            </button>
+            <button
                 onClick={() => {
                     startGame(); // Reset game
                 }}
