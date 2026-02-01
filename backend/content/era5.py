@@ -6,7 +6,7 @@ ERA_5_DATA = {
 His father Orestes rules in his name.
 Outside the walls, the barbarian general Odoacer waits. He demands land, or he will take the city.""",
     
-    "scene_background": "/assets/scenes/era5_ravenna.png",
+    "scene_background": "/assets/gameplaybg.png",
     
     "evidence": [
         {

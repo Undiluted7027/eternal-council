@@ -6,13 +6,13 @@ ERA_1_DATA = {
 To cross is treason. To retreat is death.
 The Council has gathered. They await your wisdom.""",
     
-    "scene_background": "/assets/scenes/era1_forum.png",
+    "scene_background": "/assets/gameplaybg.png",
     
     "evidence": [
         {
             "id": "era1_caesar_letter",
             "title": "Caesar's Letter",
-            "position": {"x": 65, "y": 25},  # % position in scene
+            "position": {"x": 49, "y": 70},  # % position in scene
             "sprite": "/assets/evidence/scroll.png",
             "content": """To the Conscript Fathers of the Senate:
 
@@ -27,7 +27,7 @@ If this is refused, let history record who chose war.
         {
             "id": "era1_treasury_records",
             "title": "Treasury Records",
-            "position": {"x": 35, "y": 55},
+            "position": {"x": 52, "y": 76},
             "sprite": "/assets/evidence/tablet.png",
             "content": """SENATE TREASURY - DISBURSEMENTS 50 BC
 Border Security (Hispania): 50,000 denarii
@@ -49,7 +49,7 @@ Both sides position for war while claiming peace.""",
         {
             "id": "era1_augury_report",
             "title": "Augury Report",
-            "position": {"x": 80, "y": 40},
+            "position": {"x": 46, "y": 76},
             "sprite": "/assets/evidence/vase.png",
             "content": """COLLEGIUM OF AUGURS - OFFICIAL REPORT
 The sacred chickens have been consulted.
@@ -61,7 +61,7 @@ Signed: Metellus Pius, Pontifex""",
         {
             "id": "era1_metellus_private",
             "title": "Private Letter",
-            "position": {"x": 20, "y": 75},
+            "position": {"x": 43, "y": 70},
             "sprite": "/assets/evidence/letter.png",
             "content": """Brother,
 The augury is done. The chickens ate poorly but I recorded that they did not eat at all.
@@ -77,25 +77,25 @@ Burn this letter. - M""",
         {
             "id": "caelius",
             "name": "Senator Caelius",
-            "position": {"x": 20, "y": 40},
+            "position": {"x": 30, "y": 53},
             "sprite": "/assets/advisors/caelius_sprite.png"
         },
         {
             "id": "labienus",
             "name": "General Labienus",
-            "position": {"x": 15, "y": 65},
+            "position": {"x": 17, "y": 66},
             "sprite": "/assets/advisors/labienus_sprite.png"
         },
         {
             "id": "balbus",
             "name": "Merchant Balbus",
-            "position": {"x": 70, "y": 60},
+            "position": {"x": 60, "y": 58.5},
             "sprite": "/assets/advisors/balbus_sprite.png"
         },
         {
             "id": "metellus",
             "name": "Priest Metellus",
-            "position": {"x": 85, "y": 35},
+            "position": {"x": 78, "y": 54},
             "sprite": "/assets/advisors/metellus_sprite.png"
         }
     ],

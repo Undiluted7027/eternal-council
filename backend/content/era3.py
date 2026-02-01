@@ -6,7 +6,7 @@ ERA_3_DATA = {
 He stands before the Senate to 'surrender' his emergency powers.
 The Senate must decide: Accept his protection (and his rule), or demand true freedom.""",
     
-    "scene_background": "/assets/scenes/era3_palace.png",
+    "scene_background": "/assets/gameplaybg.png",
     
     "evidence": [
         {
